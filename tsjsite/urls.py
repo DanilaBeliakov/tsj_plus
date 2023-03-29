@@ -12,7 +12,7 @@ urlpatterns = [
     path('signup/', auth.sign_up_page, name='signup'),
     path('documents/', include('documents.urls')),
     path('news/', include('news.urls')),
-
+    path('account/', include('personal_account.urls')),
 ]
 
 urlpatterns += [
