@@ -1,0 +1,30 @@
+{% extends "base_account.html" %}
+{% block title %} Личный кабинет {% endblock%}
+{% block content %}
+<form method="POST">
+        {% csrf_token %}
+        {{ form.email.label }}
+        <br>
+        {{form.email}}
+        <br>
+       {{ form.password.label }}
+        <br>
+        {{ form.full_name.label }}
+        <br>
+        {{form.full_name}}
+        <br>
+        {{ form.flat_number.label }}
+        <br>
+        {{form.flat_number }}
+        <br>
+        <div class="password">
+            {{form.password}}
+            <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+        </div>
+        <br>
+        <a href="/signup"><h6>Еще не зарегистрированы?</h6></a>
+        <br>
+        <input type="submit" value="Создать аккаунт" style="width: 400px; height: 50px;" >
+</form>
+
+{% endblock %}

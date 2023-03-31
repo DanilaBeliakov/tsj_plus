@@ -1,0 +1,14 @@
+{% extends "base_documents.html" %}
+
+{% block content %}
+
+<strong><h3>Документы:</h3></strong>
+<br> <br>
+{% for elem in all %}
+<p>
+  <strong>{{elem.name}}<br></strong>
+  Тут будет ссылка на скачивание
+</p>
+{% endfor %}
+
+{% endblock %}
