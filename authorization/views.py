@@ -19,8 +19,9 @@ def sign_up_page(request):
         password = request.POST.get('password_first')
         new_address = houses.objects.create(address=address)
         house_id = new_address.id
+        is_admin = True
         try:
-            users.objects.create_user(username=email, email=email, password=password, house_id=house_id, flat_number=flat, full_name=name)
+            users.objects.create_user(username=email, email=email, password=password, house_id=house_id, flat_number=flat, full_name=name, is_admin=is_admin)
             request.session['email'] = email
             request.session['is_logged'] = True
             request.session['house_id'] = house_id

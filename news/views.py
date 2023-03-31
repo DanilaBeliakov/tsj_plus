@@ -3,44 +3,44 @@ from .models import news
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 import datetime
 from django.utils.dateparse import parse_datetime
+import sys
+import os
+sys.path.append(os.getcwd())
+from authorization.models import users
 
 
 def index_news(request):
-
+    now_user = users.objects.get(email = request.session['email'])
     all = news.all_elements(now_house = request.session['house_id'])
+
     return render(
             request,
             'index_news.html',
-            context = {"all" : all},
+            context = {"all" : all, "now_user" : now_user},
     )
 
 def only_notifications(request):
-
+    now_user = users.objects.get(email = request.session['email'])
     type_y = news.choose_elements(now_type = "Уведомление", now_house = request.session['house_id'])
     return render(
             request,
             'notes.html',
-            context = {"type_y" : type_y},
+            context = {"type_y" : type_y, "now_user" : now_user},
     )
 
 def only_finals(request):
-
+    now_user = users.objects.get(email = request.session['email'])
     type_i = news.choose_elements(now_type = "Итог собрания", now_house = request.session['house_id'])
     return render(
             request,
             'finals.html',
-            context = {"type_i" : type_i},
+            context = {"type_i" : type_i, "now_user" : now_user},
     )
 
 def create_news(request):
 
     if request.method == "POST":
-        temp = news.objects.all()
-        res = 0
-        for elem in temp:
-            res = max(res,elem.news_id)
         new = news()
-        new.news_id = res + 1
         new.type = request.POST.get("type")
        # new.news_date = datetime.datetime.strptime(request.POST.get('date'),"%Y-%m-d%").date()
      #   new.news_date = parse_datetime(request.POST.get('date'))
@@ -73,10 +73,3 @@ def block_construct(request):
             context = {},
     )
 
-def block_personal(request):
-
-    return render(
-            request,
-            'personal.html',
-            context = {},
-    )

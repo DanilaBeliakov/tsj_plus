@@ -5,7 +5,7 @@ from django.http import HttpResponse
 # Create your models here.
 class news(models.Model):
 
-    news_id = models.IntegerField(primary_key = True)
+    news_id = models.BigAutoField(primary_key = True)
     name = models.CharField(max_length = 30)
     news_text = models.TextField()
     type = models.CharField(max_length = 20)

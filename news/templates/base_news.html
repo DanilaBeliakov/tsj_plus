@@ -25,13 +25,16 @@
           <li><a href="{% url 'index_news' %}"> Все</a></li>
           <li><a href="{% url 'notes' %}">Уведомления</a></li>
           <li><a href="{% url 'finals' %}">Итоги собраний</a></li>
-          <li><a href="{% url 'add_news' %}">Добавить новость</a></li>
+          {% if now_user.is_admin %}
+            <li><a href="{% url 'add_news' %}">Добавить новость</a></li>
+          {% endif %}
       </ul>
      {% endblock %}
 
       {% block topbar %}
       <div class="topbar">
         <a href="{% url 'index_news' %}"> Новости </a>
+        <a href="{% url 'index_voting' %}">Голосование</a>
         <a href="{% url 'construct' %}">Конструктор документов</a>
         <a href="{% url 'index_documents' %}">Документы</a>
         <a href="{% url 'account' %}">личный кабинет</a>

@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'authorization',
     'news.apps.NewsConfig',
     'documents.apps.DocumentsConfig',
-    'personal_account'
+    'personal_account',
+    'voting.apps.VotingConfig',
 ]
 
 MIDDLEWARE = [

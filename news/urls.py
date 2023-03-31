@@ -7,6 +7,5 @@ urlpatterns = [
     re_path(r'^notes/$', views.only_notifications, name='notes'),
     re_path(r'^finals/$', views.only_finals, name='finals'),
     re_path(r'^construct/$', views.block_construct, name='construct'),
-    re_path(r'^personal/$', views.block_personal, name='personal'),
     re_path(r'^add_news/$', views.create_news, name='add_news'),
 ]
