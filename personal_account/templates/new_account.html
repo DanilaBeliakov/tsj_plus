@@ -1,0 +1,32 @@
+{% extends "base_account.html" %}
+{% block title %} Личный кабинет {% endblock%}
+{% block content %}
+<form method="POST">
+        {% csrf_token %}
+        {{ form.email.label }}
+        <br>
+        {{form.email}}
+        <br>
+       {{ form.password.label }}
+        <br>
+        {{ form.full_name.label }}
+        <br>
+        {{form.full_name}}
+        <br>
+        {{ form.flat_number.label }}
+        <br>
+        {{form.flat_number }}
+        <br>
+        {{ form.flat_area.label }}
+        <br>
+        {{form.flat_area }}
+        <br>
+        {{ form.flat_share.label }}
+        <br>
+        {{form.flat_share }}
+        <br>
+        <br>
+        <input type="submit" value="Создать аккаунт" style="width: 400px; height: 50px;" >
+</form>
+
+{% endblock %}

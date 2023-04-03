@@ -1,0 +1,29 @@
+{% extends "base_voting.html" %}
+
+{% block content %}
+
+<strong><h3>Активные голосования:</h3></strong>
+<br> <br>
+  {% for vote in my_votes %}
+  <p>
+
+    {{vote.question}}<br>
+    <form method="post">
+        
+        {% csrf_token %}
+        <p>
+            Решение:<br />
+            <select multiple name='vote'>
+                <option>ЗА</option>
+                <option>ПРОТИВ</option>
+             </select>
+             <input type="hidden" name='election_id' value={{vote.election_id}} />
+        </p>
+
+        <input type="submit" value = "Проголосовать" >
+    </form>
+
+  </p>
+  {% endfor %}
+
+{% endblock %}

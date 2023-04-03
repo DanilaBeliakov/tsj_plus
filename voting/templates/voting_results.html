@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <strong><h3>Результаты голосований:</h3></strong>
+    <br> <br>
+    {% for elem in house_votes %}
+        {% for now in elem %}
+            {% if forloop.first %}
+                Причина голосования: <br>
+                <strong>{{now.question}} <br></strong>
+                Результаты:<br>
+                Голосов за {{now.voited_for_part}}%<br>
+                Голосов против {{now.voited_against_part}}%<br>
+                {% if now.is_quorum == 1 %}
+                    Кворум достигнут!!! <br>
+                {% else %}
+                    Кворум не достигнут <br>
+                {% endif %}
+                <br>
+                
+            {% else %}
+                {% if now.type == Онлайн %}
+                    Голос получен онлайн <br>
+                    email: {{now.user.email}} <br>
+                    имя: {{now.user.full_name}} <br>
+                    квартира: {{now.user.flat_number}} <br>
+                    {% if now.result == 1 %}
+                        голос: "ЗА"<br>
+                    {% else %}
+                        голос: "ПРОТИВ"<br>
+                    {% endif %}
+                {% else %}
+                    Голос получен очно <br>
+                    имя: {{now.user_name}} <br>
+                    квартира: {{now.user_flat_number}} <br>
+                    {% if now.result == 1 %}
+                        голос: "ЗА"<br>
+                    {% else %}
+                        голос: "ПРОТИВ"<br>
+                    {% endif %}
+                {% endif %}
+
+                <br>
+            {% endif %}
+        {% endfor %}
+        <br> ---------------------------------<br>
+    {% endfor %}
+
+    <a href="{% url 'index_voting' %}"> Перейти к голосованиям </a>
+
+
+</body>
+</html>

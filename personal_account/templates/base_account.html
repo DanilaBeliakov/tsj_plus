@@ -1,0 +1,14 @@
+{% extends "base_documents.html" %}
+{% block title %} <title>Личный кабинет</title> {% endblock%}
+{% block content %}
+<h5>Авторизованный пользователь: {{name}}</h5>
+<br>
+<h5>Адрес дома: {{address}}</h5>
+<br>
+<h5>Почта: {{email}}</h5>
+<br>
+<a href="logout">Выйти из аккаунта</a>
+{% if is_admin %}
+<a href="/account/new_user">Создать аккаунт для собственника</a>
+{% endif %}
+{% endblock %}
