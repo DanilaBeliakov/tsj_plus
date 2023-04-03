@@ -4,13 +4,14 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="\static\css\styles_add_news.css">
 </head>
 <body>
     <form method="post">
         {% csrf_token %}
         <p>
               Тип новости:<br />
-            <select multiple name="type">
+            <select class= "box" name="type">
                 <option>Уведомление</option>
                 <option>Итог собрания</option>
              </select>
@@ -18,12 +19,13 @@
         </p>
         <p>
             <label>Введите дату новости (год-месяц-день)</label><br>
-            <input type="date" name = "date" />
+            <input type="date" class= "date" id="date" name = "date" />
         </p>
         <input type="submit" value = "Опубликовать" >
+        
     </form>
 
-    <a href="{% url 'index_news' %}"> Перейти к новостям </a>
+    <a class="go" href="{% url 'index_news' %}"> Перейти к новостям </a>
 
 </body>
 </html>

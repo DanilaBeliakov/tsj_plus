@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="\static\css\styles_voting_results.css">
 </head>
 <body>
     <strong><h3>Результаты голосований:</h3></strong>
@@ -34,6 +35,14 @@
                     {% endif %}
                 {% else %}
                     Голос получен очно <br>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name='election_id' value={{now.election.election_id}} />
+                        <input type="hidden" name='vote_id' value={{now.vote_id}} />
+                        <input type="submit" value = "Удалить голос" >
+                    </form>
+
                     имя: {{now.user_name}} <br>
                     квартира: {{now.user_flat_number}} <br>
                     {% if now.result == 1 %}

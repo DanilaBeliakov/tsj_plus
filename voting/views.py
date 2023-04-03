@@ -67,6 +67,26 @@ def add_voting(request):
         )
     
 def voting_results(request):
+    
+    if request.method == "POST":
+        now_vote = offline_votes.objects.get(vote_id = request.POST.get('vote_id'))
+        now_election = elections.objects.get(election_id = request.POST.get('election_id'))
+
+        if now_vote.result == 1:
+            now_election.voited_for_area -= now_vote.user_flat_area * now_vote.user_flat_share
+            now_election.voited_for_part = (now_election.voited_for_area / now_election.house.house_area)*100
+        else:
+            now_election.voited_against_area -= now_vote.user_flat_area * now_vote.user_flat_share
+            now_election.voited_against_part = (now_election.voited_against_area / now_election.house.house_area)*100
+
+        if (now_election.voited_for_part + now_election.voited_against_part) >= now_election.quorum_limit:
+            now_election.is_quorum = 1
+        else:
+            now_election.is_quorum = 0
+
+        now_vote.delete()
+        now_election.save()
+
     my_elections = elections.choose_elements(house_id = request.session['house_id'])
     house_votes = []
     for elem in my_elections:
@@ -76,7 +96,6 @@ def voting_results(request):
         election_votes = votes.choose_elements(election = elem.election_id)
         for i in election_votes:
             temp.append(i)
-        
 
         offline_election_votes = offline_votes.choose_elements(election = elem.election_id)
         for i in offline_election_votes:
