@@ -3,10 +3,12 @@
 {% block content %}
 
   {% for elem in type_i %}
-  <p>
+  <div class="news">
+  <a>
     <strong>{{elem.name}}<br></strong>
-      {{elem.news_text}}
-  </p>
+      {{elem.news_text | safe}}
+  </a>
+  </div>
   {% endfor %}
 
 {% endblock %}

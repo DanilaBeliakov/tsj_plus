@@ -2,44 +2,42 @@
 <html lang="en">
 <head>
 
-
-  <meta charset="utf-8">
-
+    <title>ТСЖ Плюс - Новости ТСЖ</title>
+    <meta charset="utf-8">
   <!-- Добавление дополнительного статического CSS файла -->
-  {% load static %}
-  <link rel="stylesheet" href="\static\css\styles_news.css">
+    {% load static %}
+    <link rel="stylesheet" href="\static\css\styles_news.css">
 </head>
 
 <body >
 
-     <ul class="menu-main">
+     <div class="menu-main">
      {% block topbar %}
         <a href="{% url 'index_news' %}"> Новости </a>
         <a href="{% url 'index_voting' %}">Голосование</a>
-        <a href="{% url 'construct' %}">Конструктор документов</a>
+        <a href="{% url 'construct' %}">Как провести собрание</a>
         <a href="{% url 'index_documents' %}">Документы</a>
         <a href="{% url 'account' %}">личный кабинет</a>
 
       {% endblock %}
-    </ul>
-    <div class="container"> 
+    </div>
+
+    <div class="container">
+    <ul>
     {% block sidebar %}
     <li><a href="{% url 'index_news' %}"> Все</a></li>
     <li><a href="{% url 'notes' %}">Уведомления</a></li>
     <li><a href="{% url 'finals' %}">Итоги собраний</a></li>
-{% if now_user.is_admin %} <li><a href="{% url 'add_news' %}">Добавить новость</a></li> {% endif %}
+{% if now_user.is_admin %} <li><a href="{% url 'add_news' %}">Добавить новость</a> </li>{% endif %}
 
      {% endblock %}
+    </ul>
     </div>
 
     <div class="main-news">
-      
-      <div class="title">Главные новости</div>
-      
-    <div class="news"><a href="#" > {% block content %}</a></div>
-    
-      {% endblock %}
-      
+        <div class="title">Главные новости</div>
+        <div class="news"><a>{% block content %} {% endblock %}</a></div>
+
     </div>
 
 </body>

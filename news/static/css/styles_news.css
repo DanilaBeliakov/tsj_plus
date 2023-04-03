@@ -49,7 +49,7 @@
 }
 .menu-main a:hover:before, .menu-main .current:before {left: 0;}
 .menu-main a:hover:after, .menu-main .current:after {right: 0;}   
-@media (max-width: 550px) {
+@media (max-width: 900px) {
 .menu-main {padding-top: 0;}
 .menu-main li {display: block;}
 .menu-main li:after {content: none;}
@@ -82,16 +82,15 @@ body {
 .main-news {
     border:1px  solid white;
     border-top:3px  solid #feb386;
-    width:300px;
+    width:1200px;
     font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 20px;
     letter-spacing: 2px;
-  text-align: center;
-  margin-left:0px;
-    margin-top: -110px;
-    margin-right: 0px;
+    text-align: left;
+    margin-top: -120px;
     border-radius: 30px;
     color: #9d999d;
-  }
+   }
   .title {
     background:white;
     text-transform:uppercase;
@@ -110,10 +109,10 @@ body {
   .news:last-child {
     border-bottom:none;
   }
-
   a {
     color:black;
-    text-decoration:none;}
-  a:hover {
-    color:#feb386;
+    font-size: 20px;
+    text-decoration:none;
   }
+
+

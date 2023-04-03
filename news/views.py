@@ -45,17 +45,17 @@ def create_news(request):
        # new.news_date = datetime.datetime.strptime(request.POST.get('date'),"%Y-%m-d%").date()
      #   new.news_date = parse_datetime(request.POST.get('date'))
         new.news_date = request.POST.get('date')
-        new.news_text = ""
+        new.news_text = request.POST.get('editor1')
         new.election_id = -1
         new.house_id = request.session['house_id']
         if request.POST.get("type") == "Уведомление":
             new.name = "Уведомление от "+ request.POST.get('date')
         else:
             new.name = "Итог собрания от "+ request.POST.get('date')
-        if request.POST.get("type") == "Уведомление":
-            new.news_text = "Тут будет текст уведомления"
-        else:
-            new.news_text = "Тут будет текст итога собрания"
+        # if request.POST.get("type") == "Уведомление":
+        #     new.news_text = "Тут будет текст уведомления"
+        # else:
+        #     new.news_text = "Тут будет текст итога собрания"
         new.save()
         return HttpResponseRedirect("/news")
     else:

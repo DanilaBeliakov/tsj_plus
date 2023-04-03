@@ -45,7 +45,7 @@ def new_user_account(request):
             [email],
             fail_silently=False,
         )
-        return redirect('account/')
+        return redirect('account')
         # except IntegrityError:
         #    return HttpResponse(f"<h2>Пользователь с почтой {email} уже ранее регистрировался!</h2>")
         # finally:
