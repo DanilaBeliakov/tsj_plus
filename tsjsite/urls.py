@@ -13,7 +13,8 @@ urlpatterns = [
     path('documents/', include('documents.urls')),
     path('news/', include('news.urls')),
     path('account/', include('personal_account.urls')),
-    path('voting/', include('voting.urls'))
+    path('voting/', include('voting.urls')),
+    path('construct/', include('construct.urls')),
 ]
 
 urlpatterns += [

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'documents.apps.DocumentsConfig',
     'personal_account',
     'voting.apps.VotingConfig',
+    'construct.apps.ConstructConfig',
 ]
 
 MIDDLEWARE = [
