@@ -2,7 +2,10 @@
 
 {% block content %}
 
-<strong><h3>Как организовать собрание</h3></strong>
-<br> <br>
+{% for elem in all %}
+  <div class="news">
+  <a href="meeting?id={{ elem.meeting_id }}"> {{ elem.title }}</a>
+  </div>
+  {% endfor %}
 
 {% endblock %}
