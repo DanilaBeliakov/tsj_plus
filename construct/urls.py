@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('', views.index_construct, name='index_construct'),
     re_path('meeting/', views.meeting_view, name='meeting_view'),
+    re_path('notification/', views.notification_view, name='notification_view'),
 ]
