@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+#$f8u7@wt5qt3tt$yr0ia0c*a_dkk5r(i1m7!(1prm@9=-_hc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'tsjsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'postgres',
-        'PASSWORD': 'Nich139#',
+        'NAME': 'tsjdb',
+        'USER': 'tsj_danila',
+        'PASSWORD': 'danilatsj',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
