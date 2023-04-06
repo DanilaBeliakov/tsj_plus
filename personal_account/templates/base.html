@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+
+  <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  <link rel="stylesheet" href="\static\css\styles_pers.css">
+</head>
+
+<body>
+
+  <ul class="menu-main">
+    {% block topbar %}
+       <a href="{% url 'index_news' %}"> Новости </a>
+       <a href="{% url 'index_voting' %}">Голосование</a>
+       <a href="{% url 'index_construct' %}">Как провести собрание</a>
+       <a href="{% url 'index_documents' %}">Документы</a>
+       <a href="{% url 'account' %}">личный кабинет</a>
+
+     {% endblock %}
+   </ul>
+   
+    
+      {% block content %}{% endblock %}
+   
+
+</body>
+</html>

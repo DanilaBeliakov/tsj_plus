@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+
+
+  <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  <link rel="stylesheet" href="\static\css\styles_main_votes.css">
+</head>
+
+<body>
+
+
+  <ul class="menu-main">
+    {% block topbar %}
+       <a href="{% url 'index_news' %}"> Новости </a>
+       <a href="{% url 'index_voting' %}">Голосование</a>
+       <a href="{% url 'index_construct' %}">Как провести собрание</a>
+       <a href="{% url 'index_documents' %}">Документы</a>
+       <a href="{% url 'account' %}">личный кабинет</a>
+
+     {% endblock %}
+   </ul>
+   <div class="container"> 
+      {% block sidebar %}
+    
+          {% if now_user.is_admin %}
+            <li><a href="{% url 'add_voting' %}">Добавить голосование</a></li>
+            <li><a href="{% url 'voting_results' %}">Результаты голосований</a></li>
+            <li><a href="{% url 'add_offline' %}">Добавить оффлайн голоса</a></li>        
+            {% endif %}
+    
+     {% endblock %}
+    </div>
+    
+      
+      {% block content %}{% endblock %}
+     
+    
+
+  
+</body>
+</html>

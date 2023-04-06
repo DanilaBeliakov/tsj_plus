@@ -1,0 +1,14 @@
+{% extends "base_news.html" %}
+
+{% block content %}
+
+  {% for elem in all %}
+  <div class="news">
+  <a>
+    <h3>{{elem.name}}<br></h3>
+      {{elem.news_text|safe}}
+  </a>
+  </div>
+  {% endfor %}
+
+{% endblock %}

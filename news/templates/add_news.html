@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="\static\css\styles_add_news.css">
+    <script src="\static\ckeditor\ckeditor.js"></script>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <p>
+              Тип новости:<br />
+            <select class= "box" name="type">
+                <option>Уведомление</option>
+                <option>Итог собрания</option>
+             </select>
+
+        </p>
+        <p>
+            <label>Введите дату новости (год-месяц-день)</label><br>
+            <input type="date" class= "date" id="date" name = "date" />
+        </p>
+            <label>Введите текст новости:</label><br>
+            <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
+            <script>
+                CKEDITOR.replace("editor1");
+            </script>
+        <br>
+        <br>
+        <br>
+
+        <input type="submit" value = "Опубликовать" >
+        
+    </form>
+
+    <a class="go" href="{% url 'index_news' %}"> Перейти к новостям </a>
+
+</body>
+</html>

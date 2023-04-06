@@ -1,0 +1,14 @@
+{% extends "base_documents.html" %}
+
+{% block content %}
+
+  <strong><h3>Версии устава:</h3></strong>
+  <br> <br>
+  {% for elem in type_y %}
+    <p>
+      <strong>{{elem.name}}<br></strong>
+  Тут будет ссылка на скачивание
+  </p>
+  {% endfor %}
+
+{% endblock %}
