@@ -130,7 +130,7 @@ def notification_view(request):
         else:
             is_representative = False
 
-        doc = DocxTemplate("C://Users/Nikas/Desktop/tsj_plus/tsj_plus/construct/notification.docx")
+        doc = DocxTemplate("notification.docx")
         user = users.objects.get(email=request.session['email'])
         house = houses.objects.get(id=request.session['house_id'])
         meeting = meetings.objects.get(meeting_id=request.session['meeting_id'])
@@ -249,7 +249,7 @@ def add_statement(request):
                     'tsj_name': tsj_name,
                    }
         
-        doc = DocxTemplate("C://Users/Nikas/Desktop/tsj_plus/tsj_plus/construct/statement.docx")
+        doc = DocxTemplate("contruct/statement.docx")
         doc.render(context)
 
         now = datetime.datetime.now()
@@ -310,7 +310,7 @@ def add_protocol(request):
                     'notification': notify,
                    }
         
-        doc = DocxTemplate("C://Users/Nikas/Desktop/tsj_plus/tsj_plus/construct/protocol.docx")
+        doc = DocxTemplate("contruct/protocol.docx")
         doc.render(context)
         now = datetime.datetime.now()
         filename = f"{now.strftime('%Y-%m-%d_%H-%M-%S')}_{uuid.uuid4().hex}.docx"
