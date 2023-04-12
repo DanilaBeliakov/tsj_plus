@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index_documents, name='index_documents'),
-    re_path(r'^protocols/$', views.only_protocols, name='protocols'),
-    re_path(r'^codex/$', views.only_codex, name='codex'),
+    re_path(r'^doc.notes/$', views.doc_notes, name='doc_notes'),
+    re_path(r'^doc.statements/$', views.doc_statements, name='doc_statements'),
+    re_path(r'^doc.protocols/$', views.doc_protocols, name='doc_protocols'),
 ]

@@ -10,7 +10,6 @@ class SignUpForm(forms.Form):
     password_first = forms.CharField(label='Пароль:', widget=forms.PasswordInput(attrs={"class":"myfield", 'style':'width: 400px; height: 40px;'}))
     password_second = forms.CharField(label='Подтверждение пароля:', widget=forms.PasswordInput(attrs={"class":"myfield", 'style':'width: 400px; height: 40px;'}))
     flat_area = forms.CharField(label='Площадь личной квартиры:', widget=forms.TextInput(attrs={"class":"myfield", 'style':'width: 400px; height: 40px;'}))
-    house_area = forms.CharField(label='Жилая площадь дома:', widget=forms.TextInput(attrs={"class":"myfield", 'style':'width: 400px; height: 40px;'}))
     flat_share = forms.CharField(label='Доля в личной квартире:', widget=forms.TextInput(attrs={"class":"myfield", 'style':'width: 400px; height: 40px;'}))
 
     class Meta:

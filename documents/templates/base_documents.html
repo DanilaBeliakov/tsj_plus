@@ -7,33 +7,43 @@
   <!-- Добавление дополнительного статического CSS файла -->
   {% load static %}
   <link rel="stylesheet" href="\static\css\styles_base_documents.css">
+  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=ckzsvGossMSKxKoPsn2Ra2Ax8Yju8DehUEWzHKLUVmzm8ZBoh7-Ep8OFNEpSkJcU8PLpjANqC9-T27-b5u7Z7Du0yXkOUJIBCjz0ht9bZ5kfDGm5Jugl4AEGJ94V88Km4Jk6rySRBfzVjS976FLW316ldpeRL7FWOVdrbdeJFvw" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jZG4uZGlzY29yZGFwcC5jb20vYXR0YWNobWVudHMvMTA4NjIwNjgyNTc3MjM1MTUzOC8xMDk1Njg1NjcxNTcxNjg1NDc2L2Jhc2VfZG9jdW1lbnRzLmh0bWw"/><script type="text/javascript" src="file_upload.js"></script>
 </head>
 
 <body>
-
-  <ul class="menu-main">
+  <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" class="logo" height="100" width="200">
+  <img src="https://i.ibb.co/jkwgNVW/image.png" alt="image1" class="image1" height="130" width="190">
+  <img src="https://i.ibb.co/K25h5TP/image.png" alt="image2" class="image2" height="100" width="100">
+  <div class="menu-main">
     {% block topbar %}
        <a href="{% url 'index_news' %}"> Новости </a>
        <a href="{% url 'index_voting' %}">Голосование</a>
        <a href="{% url 'index_construct' %}">Как провести собрание</a>
        <a href="{% url 'index_documents' %}">Документы</a>
        <a href="{% url 'account' %}">личный кабинет</a>
-
      {% endblock %}
-   </ul>
+   </div>
    <div class="container"> 
+    <ul>
     {% block sidebar %}
-   
-          <li><a href="{% url 'index_documents' %}"> Все</a></li>
-          <li><a href="{% url 'codex' %}">Версии устава</a></li>
-          <li><a href="{% url 'protocols' %}">Протоколы собраний</a></li>
-     
-     {% endblock %}
+          <li><a href="{% url 'index_documents' %}"> Все документы</a></li>
+          <li><a href="{% url 'doc_notes' %}">Уведомления</a></li>
+          <li><a href="{% url 'doc_statements' %}">Бюллетени</a></li>
+          <li><a href="{% url 'doc_protocols' %}">Протоколы</a></li>
+        </ul>
     </div>
-   
     
-      {% block content %}{% endblock %}
-   
+    {% endblock %}
+    <!-- <form enctype="multipart/form-data" method="post">
+      <p><input type="file" name="f">
+      <input type="submit" value="Отправить"></p>
+     </form>  -->
+
+    <div class="main-news">
+      <div class="title">Документы</div>
+      <div class="news" ><a>{% block content %} {% endblock %}</a></div>
+
+  </div>
 
 </body>
 </html>

@@ -1,65 +1,124 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="\static\css\styles_voting_results.css">
-</head>
-<body>
-    <strong><h3>Результаты голосований:</h3></strong>
-    <br> <br>
-    {% for elem in house_votes %}
-        {% for now in elem %}
-            {% if forloop.first %}
-                Причина голосования: <br>
-                <strong>{{now.question}} <br></strong>
-                Результаты:<br>
-                Голосов за {{now.voited_for_part}}%<br>
-                Голосов против {{now.voited_against_part}}%<br>
-                {% if now.is_quorum == 1 %}
-                    Кворум достигнут!!! <br>
-                {% else %}
-                    Кворум не достигнут <br>
-                {% endif %}
-                <br>
-                
-            {% else %}
-                {% if now.type == Онлайн %}
-                    Голос получен онлайн <br>
-                    email: {{now.user.email}} <br>
-                    имя: {{now.user.full_name}} <br>
-                    квартира: {{now.user.flat_number}} <br>
-                    {% if now.result == 1 %}
-                        голос: "ЗА"<br>
-                    {% else %}
-                        голос: "ПРОТИВ"<br>
-                    {% endif %}
-                {% else %}
-                    Голос получен очно <br>
 
+{% extends "base_voting.html" %}
+{% block content %}
+    <strong><h3>Результаты голосования:</h3></strong>
+    <br> <br>
+    </label>
+
+    <strong>{{meeting.title}}</strong><br>
+
+    <strong> таблица результатов по каждому вопросу</strong>
+
+    <table>
+        <tr>
+            <th>Статус </th>
+            <th>Вопрос </th>
+            <th>За </th>
+            <th>Против </th>
+            <th>Воздержались  </th>
+            <th>Кворум</th>
+        </tr>
+
+    {% for now in only_elections %}
+    <tr>
+        {% if now.is_working == 0 %}
+        <td>НЕ НАЧАТО</td>
+        {% endif %}
+
+        {% if now.is_working == 1 %}
+        <td>Активно</td>
+        {% endif %}
+
+        {% if now.is_working == 2 %}
+        <td>ЗАВЕРШЕНО</td>
+        {% endif %}
+
+        <td>{{now.question}}</td>
+        <td>{{now.voited_for_part}}%</td>
+        <td>{{now.voited_against_part}}%</td>
+        <td>{{now.voited_idk_part}}%</td>
+        {% if now.is_quorum == 1 %}
+        <td>Достигнут</td>
+        {% else %}
+        <td>Не достигнут</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+
+    </table>
+    
+<br><br>
+        Каждое голосование отдельно<br>
+
+
+        {% for elect in now_votes %}
+        
+            {% for now in elect %}
+
+            {% if forloop.first %}
+            
+                    <strong>{{now.question}} <br></strong>
+            <br>
+            <table>
+            <tr>
+                <th>Тип голоса</th>
+                <th>Почта(для онлайн) </th>
+                <th>Имя </th>
+                <th>Квартира </th>
+                <th>Голос</th>
+                <th>Удалить(для очного)</th>
+            </tr>
+            {% else %}
+                <tr>
+                {% if now.type == "Онлайн" %}
+                <td> Онлайн </td>
+                    <td> {{now.user.email}} </td>
+                    <td> {{now.user.full_name}} </td>
+                    <td> {{now.user.flat_number}} </td>
+                    {% if now.result == 1 %}
+                    <td> "ЗА"</td>
+                    {% endif %}
+                    {% if now.result == 0 %}
+                    <td> "ПРОТИВ"</td>
+                    {% endif %}
+                    {% if now.result == 2 %}
+                    <td>"ВОЗДЕРЖАЛСЯ"</td>
+                    <td>-</td>
+                    {% endif %}
+                {% endif %}
+
+                {% if now.type == "Очное" %}
+                    <td> Очное </td>
+                    <td>-</td>
+                    <td>{{now.user_name}} </td>
+                    <td>{{now.user_flat_number}}  </td>
+                    {% if now.result == 1 %} </td>
+                    <td> "ЗА" </td>
+                    {% endif %}
+                    {% if now.result == 0 %}
+                    <td>"ПРОТИВ" </td>
+                    {% endif %}
+                    {% if now.result == 2 %}
+                    <td> "ВОЗДЕРЖАЛСЯ" </td>
+                    {% endif %}
+                    <td>
                     <form method="post">
                         {% csrf_token %}
                         <input type="hidden" name='election_id' value={{now.election.election_id}} />
                         <input type="hidden" name='vote_id' value={{now.vote_id}} />
                         <input type="submit" value = "Удалить голос" >
                     </form>
-
-                    имя: {{now.user_name}} <br>
-                    квартира: {{now.user_flat_number}} <br>
-                    {% if now.result == 1 %}
-                        голос: "ЗА"<br>
-                    {% else %}
-                        голос: "ПРОТИВ"<br>
-                    {% endif %}
+                    </td>
                 {% endif %}
-
-                <br>
+            </tr>
             {% endif %}
+        
         {% endfor %}
-        <br> ---------------------------------<br>
+    </table>
+    -----------------------------------------------------------------------------------------------<br>
+    <br>
     {% endfor %}
 
-    <a href="{% url 'index_voting' %}"> Перейти к голосованиям </a>
+    <a href="/construct/meeting?id={{ meeting.meeting_id }}"> Вернуться на страницу собрания</a>
 
-
-</body>
-</html>
+    {% endblock %}

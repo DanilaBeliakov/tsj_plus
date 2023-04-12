@@ -1,0 +1,31 @@
+{% extends "base_construct.html" %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Введите время начала сдачи бланков</label><br>
+    <input type="time" class= "time" name = "start_time" /><br>
+
+    <label>Введите время окончания сдачи бланков</label><br>
+    <input type="time" class= "time" name = "end_time" /><br>
+
+    <label>Введите дату сдачи бланков</label><br>
+    <input type="date" class= "date" name = "send_date" /><br>
+
+    <label>Введите дату публикации</label><br>
+    <input type="date" class= "date" name = "publication_date" /><br>
+
+    {% for elect in now_elections %}
+    <p>Причина голосования: {{elect.question}} <br />
+        Введите решение:
+        <input name= {{elect.election_id}} />
+    <br>
+    </p>
+    {% endfor %}
+
+    <input type="submit" value = "Создать бюллетень" ><br>
+</form>
+
+{% endblock %}

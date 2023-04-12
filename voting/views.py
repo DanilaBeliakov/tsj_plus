@@ -7,10 +7,10 @@ import sys
 import os
 sys.path.append(os.getcwd())
 from authorization.models import users, houses
+from construct.models import meetings
 
 
 def index_voting(request):
-
     if request.method == "POST":
         vote = votes()
         elect = request.POST.get('election_id')
@@ -23,51 +23,42 @@ def index_voting(request):
             vote.result = 1
             now_election.voited_for_area += now_user.flat_area * now_user.flat_share
             now_election.voited_for_part = (now_election.voited_for_area / now_election.house.house_area)*100
-        else:
+        elif now_vote == "ПРОТИВ":
             vote.result = 0
             now_election.voited_against_area += now_user.flat_area * now_user.flat_share
             now_election.voited_against_part = (now_election.voited_against_area / now_election.house.house_area)*100
-        if (now_election.voited_for_part + now_election.voited_against_part) >= now_election.quorum_limit:
+        else:
+            vote.result = 2
+            now_election.voited_idk_area += now_user.flat_area * now_user.flat_share
+            now_election.voited_idk_part = (now_election.voited_idk_area / now_election.house.house_area)*100
+        if (now_election.voited_for_part + now_election.voited_against_part + now_election.voited_idk_part) >= now_election.quorum_limit:
              now_election.is_quorum = 1
         else:
             now_election.is_quorum = 0
         vote.save()
         now_election.save()
-    temp = elections.choose_elements(house_id = request.session['house_id'])
+    
+    all_meetings = meetings.objects.filter(house_id = request.session['house_id'])
+    my_meetings = []
     now_user = users.objects.get(email = request.session['email'])
-    my_votes = []
-    for elem in temp:
-        if not(votes.is_voted(user_id = now_user.user_id, election_id = elem.election_id)):
-            my_votes.append(elem)
-    my_votes.reverse()
+    only_meetings = []
+    for meeting in all_meetings:
+        temp = elections.aviable(house_id = request.session['house_id'], meeting_id = meeting.meeting_id)
+        my_votes = []
+        for elem in temp:
+            if not(votes.is_voted(user_id = now_user.user_id, election_id = elem.election_id)):
+                my_votes.append(elem)
+        if len(my_votes) > 0:
+            my_meetings.append(my_votes)
+    only_meetings.reverse()
     return render(
             request,
             'index_voting.html',
-            context = {"my_votes" : my_votes, "now_user" : now_user},
+            context = {"my_meetings" : my_meetings, "now_user" : now_user},
     )
 
-def add_voting(request):
-
-    if request.method == "POST":
-        now_house = houses.objects.get(id = request.session['house_id'])
-        elect = elections()
-        elect.question = request.POST.get('question')
-        elect.voited_for_area = 0
-        elect.voited_against_area = 0
-        elect.voited_for_part = 0
-        elect.voited_against_part = 0
-        elect.house =now_house
-        elect.save()
-        return HttpResponseRedirect("/voting")
-    else:
-        return render(
-            request,
-            'add_voting.html',
-            context = {},
-        )
     
 def voting_results(request):
-    
     if request.method == "POST":
         now_vote = offline_votes.objects.get(vote_id = request.POST.get('vote_id'))
         now_election = elections.objects.get(election_id = request.POST.get('election_id'))
@@ -75,11 +66,14 @@ def voting_results(request):
         if now_vote.result == 1:
             now_election.voited_for_area -= now_vote.user_flat_area * now_vote.user_flat_share
             now_election.voited_for_part = (now_election.voited_for_area / now_election.house.house_area)*100
-        else:
+        elif now_vote.result == 0:
             now_election.voited_against_area -= now_vote.user_flat_area * now_vote.user_flat_share
             now_election.voited_against_part = (now_election.voited_against_area / now_election.house.house_area)*100
+        else:
+            now_election.voited_idk_area -= now_vote.user_flat_area * now_vote.user_flat_share
+            now_election.voited_idk_part = (now_election.voited_idk_area / now_election.house.house_area)*100
 
-        if (now_election.voited_for_part + now_election.voited_against_part) >= now_election.quorum_limit:
+        if (now_election.voited_for_part + now_election.voited_against_part + now_election.voited_idk_part) >= now_election.quorum_limit:
             now_election.is_quorum = 1
         else:
             now_election.is_quorum = 0
@@ -87,10 +81,15 @@ def voting_results(request):
         now_vote.delete()
         now_election.save()
 
-    my_elections = elections.choose_elements(house_id = request.session['house_id'])
-    house_votes = []
+    meeting_id = request.GET.get('id')
+    meeting = meetings.objects.get(meeting_id=meeting_id)
+
+    now_votes = []
+    only_elections = []
+    my_elections = elections.choose_elements(house_id = meeting.house_id, meeting_id = meeting.meeting_id)
     for elem in my_elections:
-        temp = []
+        only_elections.append(elem)
+        temp =[]
         temp.append(elem)
 
         election_votes = votes.choose_elements(election = elem.election_id)
@@ -100,14 +99,14 @@ def voting_results(request):
         offline_election_votes = offline_votes.choose_elements(election = elem.election_id)
         for i in offline_election_votes:
             temp.append(i)
+        now_votes.append(temp)
 
-        house_votes.append(temp)
-
-    house_votes.reverse()
+    only_elections.reverse()
+    now_votes.reverse()
     return render(
             request,
             'voting_results.html',
-            context ={"house_votes": house_votes},
+            context ={"now_votes": now_votes,'meeting': meeting, "only_elections" : only_elections},
     )
 
 def add_offline_votes(request):
@@ -126,23 +125,32 @@ def add_offline_votes(request):
             off_vote.result = 1
             now_election.voited_for_area += off_vote.user_flat_area * off_vote.user_flat_share
             now_election.voited_for_part = (now_election.voited_for_area / now_election.house.house_area)*100
-        else:
+        elif now_vote == "ПРОТИВ":
             off_vote.result = 0
             now_election.voited_against_area += off_vote.user_flat_area * off_vote.user_flat_share
             now_election.voited_against_part = (now_election.voited_against_area / now_election.house.house_area)*100
-        if (now_election.voited_for_part + now_election.voited_against_part) >= now_election.quorum_limit:
+        else:
+            off_vote.result = 2
+            now_election.voited_idk_area += off_vote.user_flat_area * off_vote.user_flat_share
+            now_election.voited_idk_part = (now_election.voited_idk_area / now_election.house.house_area)*100            
+        if (now_election.voited_for_part + now_election.voited_against_part + now_election.voited_idk_part) >= now_election.quorum_limit:
             now_election.is_quorum = 1
         else:
             now_election.is_quorum = 0
         off_vote.save()
         now_election.save()
 
-    my_votes = elections.choose_elements(house_id = request.session['house_id'])
-    my_votes.reverse()
+    my_meetings = []
+    meeting_id = request.GET.get('id')
+    meeting = meetings.objects.get(meeting_id=meeting_id)
+    my_votes = elections.aviable(house_id = request.session['house_id'],meeting_id = meeting.meeting_id)
+    if len(my_votes) > 0:
+        my_meetings.append(my_votes)
+    my_meetings.reverse()
     return render(
             request,
             'add_offline.html',
-            context = {"my_votes" : my_votes},
+            context = {"my_meetings" : my_meetings, "meeting" : meeting},
     )
 
 

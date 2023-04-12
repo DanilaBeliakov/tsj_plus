@@ -7,11 +7,13 @@
   <!-- Добавление дополнительного статического CSS файла -->
   {% load static %}
   <link rel="stylesheet" href="\static\css\styles_base_construct.css">
-</head>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=AKfPYd60Z_kNv2ouxYILXAA5eQiKUp3B_5IVMLzlv_oJh7U7Plnxb_aNvK0vGLc1ThnS-nfxwuiLBBch9kRoCReaw6LvYmT5659RpiAoK4wJ1tqg4tkyXctSkyp3Pmi6WqicfurM38zAEFla5LDl0RmHX6IW84iEsfP_8JedmbU" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://gc.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jZG4uZGlzY29yZGFwcC5jb20vYXR0YWNobWVudHMvMTA4NjIwNjgyNTc3MjM1MTUzOC8xMDk1Njg2MDU5MTk2Njg2NDA3L2Jhc2VfY29uc3RydWN0Lmh0bWw"/></head>
 
 <body>
-
-  <ul class="menu-main">
+  <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" class="logo" height="100" width="200">
+  <img src="https://i.ibb.co/jkwgNVW/image.png" alt="image1" class="image1" height="130" width="190">
+  <img src="https://i.ibb.co/K25h5TP/image.png" alt="image2" class="image2" height="100" width="100">
+  <div class="menu-main">
     {% block topbar %}
        <a href="{% url 'index_news' %}"> Новости </a>
        <a href="{% url 'index_voting' %}">Голосование</a>
@@ -20,10 +22,12 @@
        <a href="{% url 'account' %}">личный кабинет</a>
 
      {% endblock %}
-   </ul>
+   </div>
    
-    
-      {% block content %}{% endblock %}
+   <div class="main-news">
+    <div class="title">Собрание</div>
+    <div class="news" ><a>{% block content %} {% endblock %}</a></div>
+</div>
    
 
 </body>

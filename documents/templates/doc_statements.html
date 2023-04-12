@@ -1,0 +1,14 @@
+{% extends "base_documents.html" %}
+
+{% block content %}
+
+  <strong><h3>Бюллетени</h3></strong>
+
+  {% for meeting in my_meetings %}
+
+<p>
+  <strong>{{meeting.title}}<br></strong>
+  Бюллетень: <a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+</p>
+{% endfor %}
+{% endblock %}

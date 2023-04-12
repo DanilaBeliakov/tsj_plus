@@ -2,11 +2,108 @@
 
 {% block content %}
 
-<form method="post">
+<form method="POST" class="notif">
     {% csrf_token %}
-    {{ form.as_p}}
-    <input type="submit" value="Создать документ">
+    {{ form.type_of_plans.label }}
+    <br>
+    {{ form.type_of_plans }}
+    <br>
+    {{ form.type_of_meeting.label }}
+    <br>
+    {{ form.type_of_meeting }}
+    <br>
+    <div id="offline_fields" style="display:none">
+        {{ form.date_of_start.label }}
+        <br>
+        {{ form.date_of_start }}
+        <br>
+        {{ form.time_of_start.label }}
+        <br>
+        {{ form.time_of_start }}
+        <br>
+        {{ form.name_of_place.label }}
+        <br>
+        {{ form.name_of_place }}
+        <br>
+    </div>
+    <div id="online_fields" style="display:none">
+        {{ form.date_of_start.label }}
+        <br>
+        {{ form.date_of_start }}
+        <br>
+        {{ form.time_of_start.label }}
+        <br>
+        {{ form.time_of_start }}
+        <br>
+        {{ form.date_of_end.label }}
+        <br>
+        {{ form.date_of_end }}
+        <br>
+        {{ form.time_of_end.label }}
+
+        <br>
+        {{ form.time_of_end }}
+        <br>
+    </div>
+    {{ form.place_of_counting.label }}
+    <br>
+    {{ form.place_of_counting }}
+    <br>
+    {{ form.date_of_counting.label }}
+    <br>
+    {{ form.date_of_counting }}
+    <br>
+    {{ form.time_of_counting.label }}
+    <br>
+    {{ form.time_of_counting }}
+    <br>
+    {{ form.invited_people.label }}
+    <br>
+    {{ form.invited_people }}
+    <br>
+    {{ form.type_of_initiator.label }}
+    <br>
+    {{ form.type_of_initiator }}
+    <br>
+    <div id="owner_fields" style="display:none"></div>
+    <div id="representative_fields" style="display:none">
+        {{ form.representative_name.label }}
+        <br>
+        {{ form.representative_name }}
+        <br>
+        {{ form.attorney.label }}
+        <br>
+        {{ form.attorney }}
+        <br>
+    </div>
+
+    <input type="submit" value="Сохранить уведомление" class="btn4">
 </form>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        $(document).ready(function() {
+            $('input[type="radio"]').click(function() {
+                if($(this).attr('id') == 'id_type_of_initiator_0') {
+                    $('#owner_fields').show();
+                    $('#representative_fields').hide();
+                } else if($(this).attr('id') == 'id_type_of_initiator_1') {
+                    $('#owner_fields').hide();
+                    $('#representative_fields').show();
+                } else if($(this).attr('id') == 'id_type_of_meeting_0') {
+                    $('#online_fields').hide();
+                    $('#offline_fields').show();
+                } else if($(this).attr('id') == 'id_type_of_meeting_1') {
+                    $('#offline_fields').hide();
+                    $('#online_fields').show();
+                } else if($(this).attr('id') == 'id_type_of_meeting_2') {
+                    $('#offline_fields').show();
+                    $('#online_fields').show();
+                }
+
+            });
+        });
+
+</script>
 
 {% endblock %}

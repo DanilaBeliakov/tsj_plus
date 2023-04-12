@@ -1,1 +1,0 @@
-web: gunicorn tsjsite.wsgi --log-file -

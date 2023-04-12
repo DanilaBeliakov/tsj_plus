@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from authorization.models import users, houses
 # from .forms import AccountForm
-from .forms import NewUserForm
+from .forms import NewUserForm, ChangeForm, TsjInfoForm
 import secrets
 import string
 from django.core.mail import send_mail
@@ -61,3 +61,73 @@ def account_logout(request):
     # del request.session['house_id']
     request.session.modified = True
     return redirect('auth')
+
+
+def change_user_data(request):
+    if request.method == 'POST':
+        user = users.objects.get(email=request.session['email'])
+        email = request.POST.get('email')
+        full_name = request.POST.get('full_name')
+        flat = request.POST.get('flat_number')
+        flat_area = request.POST.get('flat_area')
+        flat_share = request.POST.get('flat_flat_share')
+        password = request.POST.get('password')
+        if email:
+            user.email = email
+        if full_name:
+            user.full_name = full_name
+        if flat:
+            user.flat_number = flat
+        if flat_area:
+            user.flat_area = flat_area
+        if flat_share:
+            user.flat_share = flat_share
+        if password:
+            user.set_password(password)
+        user.save()
+        return redirect('account')
+    else:
+        user = users.objects.get(email=request.session['email'])
+        data = {'full_name': user.full_name,
+                'email': user.email,
+                'flat_number': user.flat_number,
+                'flat_area': user.flat_area,
+                'flat_share': user.flat_share,
+        }
+        change_form = ChangeForm(initial=data)
+        return render(request, "change_account.html", context={'form': change_form})
+
+
+def save_tsj_data(request):
+    if request.method == 'POST':
+        tsj_name = request.POST.get('tsj_name')
+        address = request.POST.get('address')
+        house_area = request.POST.get('house_area')
+        inn = request.POST.get('inn')
+        ogrn = request.POST.get('ogrn')
+        house_id = request.session['house_id']
+        house = houses.objects.get(id=house_id)
+        if tsj_name:
+            house.tsj_name = tsj_name
+        if address:
+            house.address = address
+        if house_area:
+            house.house_area = house_area
+        if inn:
+            house.inn = inn
+        if ogrn:
+            house.ogrn = ogrn
+        house.save()
+        return redirect('account')
+
+    else:
+        house_id = request.session['house_id']
+        house = houses.objects.get(id=house_id)
+        data = {'tsj_name': house.tsj_name,
+                'house_area': house.house_area,
+                'inn': house.inn,
+                'ogrn': house.ogrn,
+                'address': house.address
+        }
+        tsj_form = TsjInfoForm(initial=data)
+        return render(request, "add_tsj_data.html", context={'form': tsj_form})

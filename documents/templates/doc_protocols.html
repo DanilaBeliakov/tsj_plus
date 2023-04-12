@@ -1,0 +1,14 @@
+{% extends "base_documents.html" %}
+
+{% block content %}
+
+  <strong><h3>Протоколы</h3></strong>
+
+  {% for meeting in my_meetings %}
+
+<p>
+  <strong>{{meeting.title}}<br></strong>
+  <a href="{% url 'get_protocol_file' %}"> Скачать протокол </a><br>
+</p>
+{% endfor %}
+{% endblock %}

@@ -2,17 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8" />
+     <link rel="stylesheet" href="\static\css\styles_offline.css"> 
 </head>
 <body>
-    <strong><h3>Добавить оффлайн голоса:</h3></strong>
-    <br> <br>
+    {%for my_votes in my_meetings %}
+    <strong>{{my_votes.0.meeting.title}}</strong> <br>
     {% for vote in my_votes %}
     <p>
-  
-      <strong>{{vote.question}}</strong><br>
       <form method="post">
-          
+        <strong><h3>Добавить оффлайн голоса:</h3></strong>
           {% csrf_token %}
+          <strong>{{vote.question}}</strong><br>
           <p>
             <label>Имя</label><br>
             <input type="text" name = "user_name" /><br>
@@ -23,19 +23,24 @@
             <label>Доля собственности</label><br>
             <input type="text" name = "user_flat_share" /><br>
             Решение:<br />
-            <select multiple name='vote'>
+            <select class= "box" name= 'vote'>
                 <option>ЗА</option>
                 <option>ПРОТИВ</option>
-             </select> <br>
-             <input type="submit" value = "Добавить голос" >
+                <option>ВОЗДЕРЖАЛСЯ</option>
+             </select> 
+             <br><br>
+             <input type="submit"  value = "Добавить голос" >
             </p>
             <input type="hidden" name='election_id' value={{vote.election_id}} />
         </form>
         <br>
         <br>
     {% endfor %}
+    ---------------------<br>
+    {% endfor %}
+    <a href="/construct/meeting?id={{ meeting.meeting_id }}"> Вернуться на страницу собрания</a>
 
-    <a href="{% url 'index_voting' %}"> Перейти к голосованиям </a>
+    
 
 
 </body>

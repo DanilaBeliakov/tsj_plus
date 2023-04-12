@@ -1,27 +1,34 @@
 from django.shortcuts import render
-from .models import documents
+import sys
+import os
+sys.path.append(os.getcwd())
+from construct.models import meetings
+from authorization.models import houses
 
 def index_documents(request):
-    all = documents.all_elements(now_house = request.session['house_id'])
+    now_house = houses.objects.get(id=request.session['house_id'])
+    my_meetings = meetings.objects.filter(house_id = now_house.id )
+    return render(request,
+                      'index_documents.html',
+                      context={'my_meetings':my_meetings})
 
-    return render(
-            request,
-            'index_documents.html',
-            context = {"all" : all},
-    )
+def doc_notes(request):
+    now_house = houses.objects.get(id=request.session['house_id'])
+    my_meetings = meetings.objects.filter(house_id = now_house.id )
+    return render(request,
+                      'doc_notes.html',
+                      context={'my_meetings':my_meetings})
 
-def only_codex(request):
-    type_y = documents.choose_elements(now_type = "Устав", now_house = request.session['house_id'])
-    return render(
-            request,
-            'codex.html',
-            context = {"type_y" : type_y},
-    )
+def doc_statements(request):
+    now_house = houses.objects.get(id=request.session['house_id'])
+    my_meetings = meetings.objects.filter(house_id = now_house.id )
+    return render(request,
+                      'doc_statements.html',
+                      context={'my_meetings':my_meetings})
 
-def only_protocols(request):
-    type_p = documents.choose_elements(now_type = "Протокол", now_house = request.session['house_id'])
-    return render(
-            request,
-            'protocols.html',
-            context = {"type_p" : type_p},
-    )
+def doc_protocols(request):
+    now_house = houses.objects.get(id=request.session['house_id'])
+    my_meetings = meetings.objects.filter(house_id = now_house.id )
+    return render(request,
+                      'doc_protocols.html',
+                      context={'my_meetings':my_meetings})

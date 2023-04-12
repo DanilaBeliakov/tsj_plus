@@ -1,0 +1,30 @@
+{% extends "base_construct.html" %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <p>Введите имя инициатора заседания:<p/>
+        <input type="text" name='initiator_name' />
+
+    <p>Введите имя председателя заседания:<p/>
+        <input type="text" name='chairman_name' />
+    <br>
+    <p>Введите имя секретаря заседания:<p/>
+        <input type="text" name='secretary_name' />
+    <br>
+    <p>Через запятую введите имена лиц, проводивших подсчет голосов:<p/>
+        <input type="text" name='counters_names' />
+    <br>
+    {% if notification.type_of_voting == 'очное' %}
+    <p>Введите имена докладчиков через запятую:<p/>
+        <input type="text" name='speakers_names' />
+    <br>
+    {% endif %}
+
+    
+
+    <input type="submit" value = "Создать протокол" ><br>
+</form>
+
+{% endblock %}

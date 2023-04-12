@@ -2,13 +2,21 @@
 
 {% block content %}
 
-<strong><h3>Документы:</h3></strong>
-<br> <br>
-{% for elem in all %}
+<strong><h3>Все документы</h3></strong>
+
+
+{% for meeting in my_meetings %}
+
+ 
 <p>
-  <strong>{{elem.name}}<br></strong>
-  Тут будет ссылка на скачивание
+  <strong>{{meeting.title}}<br></strong>
+  <a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<a href="{% url 'get_protocol_file' %}"> Скачать протокол </a><br>
+
 </p>
+
+
 {% endfor %}
 
 {% endblock %}

@@ -1,29 +1,37 @@
 {% extends "base_voting.html" %}
 
 {% block content %}
+<link rel="stylesheet" href="\static\css\styles_index.css">
+<div class="news"></div>
+  {% for my_votes in my_meetings %}
+    <strong>{{my_votes.0.meeting.title}}</strong> <br>
+     {% for vote in my_votes %}
+     <a>
+     <p>
 
-<strong><h3>Активные голосования:</h3></strong>
-<br> <br>
-  {% for vote in my_votes %}
-  <p>
-
-    {{vote.question}}<br>
-    <form method="post">
+       {{vote.question}}<br>
+      <form method="post">
         
         {% csrf_token %}
         <p>
             Решение:<br />
-            <select multiple name='vote'>
-                <option>ЗА</option>
-                <option>ПРОТИВ</option>
-             </select>
+            <select class= "box" name='vote'>
+              <option>ЗА</option>
+              <option>ПРОТИВ</option>
+              <option>ВОЗДЕРЖУСЬ</option>
+           </select> 
              <input type="hidden" name='election_id' value={{vote.election_id}} />
         </p>
 
         <input type="submit" value = "Проголосовать" >
     </form>
+    
 
   </p>
+   </a>
+  </div>
+    {% endfor %}
+    -----------------------<br>
   {% endfor %}
 
 {% endblock %}

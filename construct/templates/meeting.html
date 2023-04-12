@@ -4,10 +4,102 @@
 
 <h1>{{meeting.title}}</h1>
 <br>
-<h1>{{meeting.date}}</h1>
+
+{% if meeting.stage == 1 %}
+    <h1>Текущая стадия: выбраны пункты для голосования</h1>
+    <a href="{% url 'notification_view' %}"> Создать уведомление </a><br>
+{% endif %}
+
+{% if meeting.stage == 2 %}
+<h1>Текущая стадия: создано уведомление</h1>
+<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+<br> <br>
+<a href="{% url 'add_statement' %}"> Создать бюллетень </a><br>
+{% endif %}
+
+{% if meeting.stage == 3 %}
+<h1>Текущая стадия: созданы бюллетени</h1>
+<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<br><br>
+{% if now_user.is_admin %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name='status' value="START" />
+    <input type="submit" value = "Запустить голосование" >
+</form>
+{% else %}
+Администратор может запустить голосование
+{% endif %}
+{% endif %}
+
+{% if meeting.stage == 4 %}
+<h1>Текущая стадия: голосование начато</h1>
+
+<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<br><br>
+
+Если вы еще не проголосовали, то можете это сделать по ссылке <br>
+
+<a href="{% url 'index_voting' %}">Голосование</a>
+
+{% if now_user.is_admin %}
+    Вы можете добавить в систему голоса, внесенные оффлайн<br>
+    <a href="/voting/add_offline?id={{ meeting.meeting_id }}"> Добавить оффлайн голоса</a><br>
+    Посмотреть результаты голосования
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}"> Результаты голосования</a><br>
+{% endif %}
+{% if quorum == 0 %}
+    Кворум не достигнут!<br>
+    Чтобы завершить голосование, и перейти к составлению протокола нужно 50% голосов<br>
+{% else %}
+    Кворум достигнут!<br>
+    {% if now_user.is_admin %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name='status' value="STOP" />
+        <input type="submit" value = "Завершить голосование" >
+    </form>
+    {% else %}
+    Администратор может завершить голосование<br>
+    {% endif %}
+
+{% endif %}
+
+{% endif %}
+
+{% if meeting.stage == 5 %}
+<h1>Текущая стадия: голосование завершено</h1>
+
+<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<br><br>
+
+
+{% if now_user.is_admin %}
+    Посмотреть результаты голосования
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}">Результаты голосования</a><br>
+    <a href="{% url 'add_protocol' %}"> Создать Протокол </a><br>
+{% endif %}
+{% endif %}
+
+{% if meeting.stage == 6 %}
+
+<H1>СОБРАНИЕ ЗАВЕРШЕНО</H1>
+
+<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<a href="{% url 'get_protocol_file' %}"> Скачать протокол </a><br>
+{% if now_user.is_admin %}
+    Посмотреть результаты голосования
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}">Результаты голосования</a><br>
+{% endif %}
+<br><br>
+
+{% endif %}
+
 <br>
-<h1>Текущий этап: {{meeting.stage}}</h1>
 
-<a href="../">Вернуться к списку собраний</a>
-
+<a href="meeting?id={{ elem.meeting_id }}"> {{ elem.title }}</a>
 {% endblock %}
