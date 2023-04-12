@@ -10,30 +10,39 @@
 </head>
 
 <body>
-
-  <ul class="menu-main">
+  <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" class="logo" height="100" width="200">
+  <img src="https://i.ibb.co/jkwgNVW/image.png" alt="image1" class="image1" height="130" width="190">
+  <img src="https://i.ibb.co/K25h5TP/image.png" alt="image2" class="image2" height="100" width="100">
+  <div class="menu-main">
     {% block topbar %}
        <a href="{% url 'index_news' %}"> Новости </a>
        <a href="{% url 'index_voting' %}">Голосование</a>
        <a href="{% url 'index_construct' %}">Как провести собрание</a>
        <a href="{% url 'index_documents' %}">Документы</a>
        <a href="{% url 'account' %}">личный кабинет</a>
-
      {% endblock %}
-   </ul>
+   </div>
    <div class="container"> 
+    <ul>
     {% block sidebar %}
-   
-          <li><a href="{% url 'index_documents' %}"> Все</a></li>
-          <li><a href="{% url 'codex' %}">Версии устава</a></li>
-          <li><a href="{% url 'protocols' %}">Протоколы собраний</a></li>
-     
-     {% endblock %}
+          <li><a href="{% url 'index_documents' %}"> Все документы</a></li>
+          <li><a href="{% url 'doc_notes' %}">Уведомления</a></li>
+          <li><a href="{% url 'doc_statements' %}">Бюллетени</a></li>
+          <li><a href="{% url 'doc_protocols' %}">Протоколы</a></li>
+        </ul>
     </div>
-   
     
-      {% block content %}{% endblock %}
-   
+    {% endblock %}
+    <!-- <form enctype="multipart/form-data" method="post">
+      <p><input type="file" name="f">
+      <input type="submit" value="Отправить"></p>
+     </form>  -->
+
+    <div class="main-news">
+      <div class="title">Документы</div>
+      <div class="news" ><a>{% block content %} {% endblock %}</a></div>
+
+  </div>
 
 </body>
 </html>

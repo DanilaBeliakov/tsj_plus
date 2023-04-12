@@ -18,10 +18,9 @@ def sign_up_page(request):
         flat = request.POST.get('flat_number')
         password = request.POST.get('password_first')
         flat_area = request.POST.get('flat_area')
-        house_area = request.POST.get('house_area')
         flat_share = eval(request.POST.get('flat_share'))
         is_admin = 1
-        new_address = houses.objects.create(address=address, house_area=house_area)
+        new_address = houses.objects.create(address=address)
         house_id = new_address.id
         try:
             users.objects.create_user(username=email, email=email, password=password, house_id=house_id, flat_number=flat, full_name=name, is_admin=is_admin, flat_area=flat_area, flat_share=flat_share)

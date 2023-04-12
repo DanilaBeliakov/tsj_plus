@@ -10,7 +10,9 @@
 </head>
 
 <body>
-
+  <div class="logo">
+    <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" height="100" width="200">
+  </div>
   <ul class="menu-main">
     {% block topbar %}
        <a href="{% url 'index_news' %}"> Новости </a>
@@ -23,7 +25,11 @@
    </ul>
    
     
-      {% block content %}{% endblock %}
+   <div class="main-news">
+    <div class="title">Личные данные</div>
+    <div class="news" ><a>{% block content %} {% endblock %}</a></div>
+
+</div>
    
 
 </body>

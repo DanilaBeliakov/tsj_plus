@@ -2,13 +2,16 @@
 {% block title %} <title>Личный кабинет</title> {% endblock%}
 {% block content %}
 <h5>Авторизованный пользователь: {{name}}</h5>
-<br>
+
 <h5>Адрес дома: {{address}}</h5>
-<br>
+
 <h5>Почта: {{email}}</h5>
-<br>
-<a href="logout">Выйти из аккаунта</a>
+
+
+<a href="logout" class="btn">Выйти из аккаунта</a>
+<a href="change" class="btn">Изменить данные аккаунта</a>
 {% if is_admin %}
-<a href="/account/new_user">Создать аккаунт для собственника</a>
+<a href="/account/new_user" class="btn">Создать аккаунт для собственника</a>
+<a href="/account/tsj_data" class="btn">Заполнить данные ТСЖ</a>
 {% endif %}
 {% endblock %}

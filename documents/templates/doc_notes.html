@@ -1,0 +1,15 @@
+{% extends "base_documents.html" %}
+
+{% block content %}
+
+  <strong><h3>Уведомления</h3></strong>
+
+  {% for meeting in my_meetings %}
+
+<p>
+  <strong>{{meeting.title}}<br></strong>
+  <a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+</p>
+
+  {% endfor %}
+{% endblock %}

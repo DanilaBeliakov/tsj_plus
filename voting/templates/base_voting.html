@@ -11,9 +11,11 @@
 </head>
 
 <body>
+  <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" class="logo" height="100" width="200">
+    <img src="https://i.ibb.co/jkwgNVW/image.png" alt="image1" class="image1" height="130" width="190">
+    <img src="https://i.ibb.co/K25h5TP/image.png" alt="image2" class="image2" height="100" width="100">
 
-
-  <ul class="menu-main">
+  <div class="menu-main">
     {% block topbar %}
        <a href="{% url 'index_news' %}"> Новости </a>
        <a href="{% url 'index_voting' %}">Голосование</a>
@@ -22,24 +24,15 @@
        <a href="{% url 'account' %}">личный кабинет</a>
 
      {% endblock %}
-   </ul>
-   <div class="container"> 
-      {% block sidebar %}
-    
-          {% if now_user.is_admin %}
-            <li><a href="{% url 'add_voting' %}">Добавить голосование</a></li>
-            <li><a href="{% url 'voting_results' %}">Результаты голосований</a></li>
-            <li><a href="{% url 'add_offline' %}">Добавить оффлайн голоса</a></li>        
-            {% endif %}
-    
-     {% endblock %}
-    </div>
+   </div>
+
     
       
-      {% block content %}{% endblock %}
-     
-    
+    <div class="main-news">
+      <div class="title">Активные голосования</div>
+      <div class="news" ><a>{% block content %}{% endblock %}</a></div>
 
-  
+    </div>
+     
 </body>
 </html>

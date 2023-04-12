@@ -1,26 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
-@media not screen and (max-width: 1800px) {
-    .block {
-      display: flex;
-    }
-  }
-  
 .menu-main {
   list-style: none;
-  margin: 40px 0 5px;
+  margin: 10px 0 5px;
   padding: 25px 0 5px;
   text-align: center;
   background: white;
   border-radius: 30px;
 }
-.menu-main li {display: inline-block;}
+
+.menu-main li {
+  display: inline-block;
+}
+
 .menu-main li:after {
   content: "|";
   color: #606060;
   display: inline-block;
-  vertical-align:top;
+  vertical-align: top;
 }
-.menu-main li:last-child:after {content: none;}
+
+.menu-main li:last-child:after {
+  content: none;
+}
+
 .menu-main a {
   text-decoration: none;
   font-family: 'Ubuntu Condensed', sans-serif;
@@ -32,9 +34,14 @@
   text-transform: uppercase;
   display: inline-block;
   transition: color .2s;
+  color: #9d999d;
 }
-.menu-main a, .menu-main a:visited {color: #9d999d;}
-.menu-main a.current, .menu-main a:hover{color: #feb386;}
+
+.menu-main a.current,
+.menu-main a:hover {
+  color: #feb386;
+}
+
 .menu-main a:before,
 .menu-main a:after {
   content: "";
@@ -47,32 +54,391 @@
   background: #feb386;
   transition: .8s;
 }
-.menu-main a:hover:before, .menu-main .current:before {left: 0;}
-.menu-main a:hover:after, .menu-main .current:after {right: 0;}   
-@media (max-width: 550px) {
-.menu-main {padding-top: 0;}
-.menu-main li {display: block;}
-.menu-main li:after {content: none;}
-.menu-main a {
-  padding: 25px 0 20px; 
-  margin: 0 30px;
-}
-}
-body {
-    background: #AF8D86;
-  }
 
-.container{
-    background-color: white;
-    padding: 15px;
-    border-radius: 30px;
-    box-sizing: border-box;
-    font-size: 17px;
-    margin-left:1600px;
-    margin-top: 10px;
-    margin-right: 0px;
-    text-decoration: none;
-    font-family: 'Ubuntu Condensed', sans-serif;
-    letter-spacing: 2px;
-    text-align: left;
+.menu-main a:hover:before,
+.menu-main .current:before {
+  left: 0;
 }
+
+.menu-main a:hover:after,
+.menu-main .current:after {
+  right: 0;
+}
+
+@media (max-width: 900px) {
+  .menu-main {
+    padding-top: 0;
+  }
+  
+  .menu-main li {
+    display: block;
+  }
+  
+  .menu-main li:after {
+    content: none;
+  }
+  
+  .menu-main a {
+    padding: 25px 0 20px;
+    margin: 0 30px;
+    font-size: 17px;
+  }
+}
+    body {
+      background: #AF8D86;
+    }
+
+.image1{
+  position: relative;
+  left: 10%;
+  top: 17px;
+  }
+  .image2{
+    position: relative;
+    left: 48%;
+    top: 18px;
+    }
+    .logo{
+      position: relative;
+      left: 42%;
+      margin-top: 0px;
+      margin-right: 0; 
+    }
+    .main-news {
+      position: relative;
+      border: 1px solid white;
+      width: 100%;
+      font-family: 'Ubuntu Condensed', sans-serif;
+      font-size: 1.5em;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-top:0.9%;
+      border-radius: 30px;
+      color: #9d999d;
+      margin-left: auto;
+      right: 0%;
+      text-decoration: none;
+    }
+    .title {
+      background: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 30px;
+      color: #9d999d;
+      padding: 1%;
+      text-align: center;
+    }
+    .news {
+      padding: 0%;
+      border-bottom: 1px solid white;
+      margin: 8%;
+      font-size: 1em;
+      color: #9d999d;
+    }
+    .news:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: black;
+      font-size: 1.2em;
+      text-decoration: none;
+    }
+
+    input[type=text] {
+      margin-top: 1%;
+      width: 30%;
+  max-width: 100%;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      outline: none;
+      padding: 10px;
+      font-size: 16px;
+      font-family: 'Ubuntu Condensed', sans-serif;
+      border-radius: 30px;
+    }
+    
+    input[type=text]:focus {
+      border-bottom-color: #260c1a;
+    }
+
+.first {
+  position: relative;
+  display: block;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  appearance: none;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* Стили для выбранных элементов */
+.first option:checked {
+  background-color: #260c1a;
+  color: #fff;
+}
+.first option {
+  width: auto;
+}
+.hidden {
+  position: relative;
+  display: block;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  appearance: none;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.hidden option {
+  width: auto;
+}
+.hidden option:checked {
+  background-color: #260c1a;
+  color: #fff;
+}
+
+input[type="date"] {
+  appearance: none;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 5px;
+  color: #260c1a;
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  width: 200px;
+}
+
+/* стилизация кнопки выбора даты */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: #fff;
+  border-radius: 30px;
+  color: #260c1a;
+  font-size: 16px;
+  padding: 5px;
+}
+
+/* стилизация кнопки установки значения по умолчанию */
+input[type="date"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="time"] {
+  background-color: #f8f8f8;
+  border: none;
+  border-radius: 5px;
+  color: #260c1a;
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px;
+  width: 200px;
+  line-height: 10px;
+}
+.adding{
+  position: relative;
+  top: 30px ;
+  right: -10%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 50px;
+  border: 2px solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.3);
+}
+.adding2{
+  position: relative;
+  top: -20px ;
+  right: -10%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 50px;
+  border: 2px solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.3);
+}
+.small{
+  margin-top: -2%;
+}
+.adding3{
+  position: relative;
+  top: 15px ;
+  right: -5.5%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 50px;
+  border: 2px solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.3);
+}
+.btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  
+}
+.btn2{
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+}
+.btn3{
+  position: absolute;
+  top: 75%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+}
+.btn4{
+  position: absolute;
+  top: 105%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.notif{
+  position: relative;
+  margin-top: -7%;
+}
+
+input[type="radio"] {
+
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  outline: none;
+  cursor: pointer;
+ 
+}
+
+input[type="radio"]:before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: scale(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+input[type="radio"]:checked:before {
+  transform: scale(1.6);
+  background-color: #260c1a;
+}
+input[type="radio"] label {
+  display: block;
+  margin-bottom: 5px;
+}
+.btn6{
+  position: absolute;
+  top: 70%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+

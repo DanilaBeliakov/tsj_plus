@@ -4,8 +4,11 @@
 
 {% for elem in all %}
   <div class="news">
-  <a href="meeting?id={{ elem.meeting_id }}"> {{ elem.title }}</a>
-  </div>
+  <a href="meeting?id={{ elem.meeting_id }}" class="btn"> {{ elem.title }}</a>
   {% endfor %}
+  {% if now_user.is_admin %}
+    <a href="{% url 'add_meeting' %}" class="btn2">Создать новое собрание</a>
+  {% endif %}
+  </div>
 
 {% endblock %}

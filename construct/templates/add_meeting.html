@@ -1,0 +1,136 @@
+{% extends "base_construct.html" %}
+
+{% block content %}
+
+<strong>На данный момент выбрано:</strong><br>
+{% for elem in new_elections %}
+{{elem.question}} <br>
+{% endfor %}
+
+
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <strong>Выберите сферу вопросов собрания</strong><br />
+        <select id = "first-choice" class="first">
+            <option>Выберите</option>
+            <option>Устав ТСЖ</option>
+            <option>Избрание</option>
+            <option>Прекращение полномочий</option>
+            <option>Денежные средства</option>
+            <option>Доходы, расходы и финансовая отчетность</option>
+            <option>Фонды ТСЖ</option>
+            <option>Содержание и ремонт общего имущества</option>
+            <option>Деятельность правления ТСЖ и ревизионной комиссии (ревизора)</option>
+            <option>Внутренняя документация ТСЖ</option>
+            <option>Реорганизация и ликвидация ТСЖ</option>
+         </select>
+         <input type="hidden" name='status' value="NO" />
+    
+
+    <div id="second-choice" >
+        <label for="second-choice">Уточните вопрос собрания</label>
+       
+        <select class="hidden" name='new_election'>
+          <option value="">Выберите</option>
+        </select>
+
+    </div>
+    
+      <input type="submit" class="adding" value = "Добавить голосование в собрание" >
+
+</form>
+
+<script>
+    const firstChoice = document.getElementById('first-choice');
+    const secondChoice = document.getElementById('second-choice');
+
+    // Показать/скрыть второй выбор при изменении первого выбора
+    firstChoice.addEventListener('change', () => {
+      if (firstChoice.value === 'Выберите') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['']);
+      } else if (firstChoice.value === 'Устав ТСЖ') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Внесение изменений в устав ТСЖ', 'Утверждение устава ТСЖ в новой редакции']);
+    } else if (firstChoice.value === 'Избрание') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Избрание председательствующего на общем собрании', 'Избрание секретаря общего собрания',
+        "Избрание членов счетной комиссии общего собрания","Избрание членов правления ТСЖ",
+        "Избрание членов ревизионной комиссии ТСЖ", "Избрание ревизора ТСЖ", "Избрание председателя правления ТСЖ"]);
+    } else if (firstChoice.value === 'Прекращение полномочий') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Досрочное прекращение полномочий членов правления ТСЖ', 'Досрочное прекращение полномочий членов ревизионной комиссии ТСЖ',
+        "Досрочное прекращение полномочий ревизора ТСЖ", "Досрочное прекращение полномочий председателя правления ТСЖ"]);
+    } else if (firstChoice.value === 'Денежные средства') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Утверждение размера обязательных платежей и взносов членов ТСЖ', 'Получение заемных средств',
+        "Определение размера вознаграждения членов правления ТСЖ", "Определение размера вознаграждения председателя правления ТСЖ"]);
+    } else if (firstChoice.value === 'Доходы, расходы и финансовая отчетность') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Определение направлений использования дохода от хозяйственной деятельности ТСЖ', 'Утверждение сметы доходов и расходов ТСЖ на год',
+        "Утверждение отчета об исполнении смет доходов и расходов ТСЖ на год", "Утверждение аудиторских заключений",
+        "Утверждение заключения ревизионной комиссии по результатам проверки годовой бухгалтерской (финансовой) отчетности ТСЖ",
+        "Утверждение заключения ревизора ТСЖ по результатам проверки годовой бухгалтерской (финансовой) отчетности ТСЖ"]);
+    } else if (firstChoice.value === 'Фонды ТСЖ') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Образование резервного фонда ТСЖ, утверждение порядка его формирования и использования', 'Утверждение отчета об использовании резервного фонда ТСЖ',
+        "Образование фонда ТСЖ на восстановление и ремонт общего имущества в многоквартирном доме и его оборудования, утверждение порядка его формирования и использования",
+        "Утверждение отчета об использовании фонда ТСЖ на восстановление и ремонт общего имущества в многоквартирном доме и его оборудования, утверждение порядка его формирования и использования"]);
+    } else if (firstChoice.value === 'Содержание и ремонт общего имущества') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Утверждение годового плана содержания, текущего и капитального ремонта общего имущества собственников многоквартирного дома',
+        'Утверждение отчета о выполнении годового плана содержания, текущего и капитального ремонта общего имущества собственников многоквартирного дома']);
+    } else if (firstChoice.value === 'Деятельность правления ТСЖ и ревизионной комиссии (ревизора)') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Утверждение годового отчета о деятельности правления ТСЖ', 'Рассмотрение жалоб на действия председателя правления ТСЖ',
+        "Рассмотрение жалоб на действия членов правления ТСЖ", "Рассмотрение жалоб на действия ревизионной комиссии ТСЖ",
+        "Рассмотрение жалоб на действия ревизора ТСЖ"]);
+    } else if (firstChoice.value === 'Внутренняя документация ТСЖ') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Принятие правил внутреннего распорядка работников ТСЖ', 'Изменение правил внутреннего распорядка работников ТСЖ',
+        "Принятие положения об оплате труда работников ТСЖ","Изменение положения об оплате труда работников ТСЖ"]);
+    } else if (firstChoice.value === 'Реорганизация и ликвидация ТСЖ') {
+        secondChoice.classList.remove('hidden');
+        populateSecondChoices(['Принятие решения о реорганизации ТСЖ', 'Принятие решения о ликвидации ТСЖ', 
+        "Назначение ликвидационной комиссии ТСЖ", "Утверждение промежуточного ликвидационного баланса ТСЖ", "Утверждение окончательного ликвидационного баланса ТСЖ "]);
+      } else {
+        secondChoice.classList.add('hidden');
+      }
+    });
+
+    // Заполнить второй выбор соответствующими вариантами
+    function populateSecondChoices(choices) {
+      const secondSelect = secondChoice.querySelector('select');
+      secondSelect.innerHTML = '';
+      choices.forEach(choice => {
+        const option = document.createElement('option');
+        option.value = choice;
+        option.text = choice;
+        secondSelect.add(option);
+      });
+    }
+  </script>
+
+<form method="post" >
+    {% csrf_token %}
+    <p>Если ваш вариант не подходит к предложенным, введите вопрос сюда <br />
+        <input type="text" name="new_election" />
+    </p>
+    <input type="hidden" name='status' value="NO" />
+    <br>
+    <input type="submit" class="adding2" value = "Добавить голосование в собрание" >
+    
+</form>
+
+<form method="post" class="small">
+    {% csrf_token %}
+    <p>Введите название собрания(для отображения на сайте) <br />
+        <input type="text" name = 'title' >
+    <br>
+    </p>
+    <input type="submit" value = "Создать собрание" class="adding3" >
+    
+</form>
+
+{% endblock %}

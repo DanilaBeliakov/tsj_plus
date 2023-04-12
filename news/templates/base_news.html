@@ -7,9 +7,10 @@
   <!-- Добавление дополнительного статического CSS файла -->
     {% load static %}
     <link rel="stylesheet" href="\static\css\styles_news.css">
-</head>
-
 <body >
+  <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" class="logo" height="100" width="200">
+    <img src="https://i.ibb.co/jkwgNVW/image.png" alt="image1" class="image1" height="130" width="190">
+    <img src="https://i.ibb.co/K25h5TP/image.png" alt="image2" class="image2" height="100" width="100">
 
      <div class="menu-main">
      {% block topbar %}
@@ -28,15 +29,16 @@
     <li><a href="{% url 'index_news' %}"> Все</a></li>
     <li><a href="{% url 'notes' %}">Уведомления</a></li>
     <li><a href="{% url 'finals' %}">Итоги собраний</a></li>
-{% if now_user.is_admin %} <li><a href="{% url 'add_news' %}">Добавить новость</a> </li>{% endif %}
-
-     {% endblock %}
-    </ul>
-    </div>
+  </ul>
+  </div>
+<div class="wrapper">
+{% if now_user.is_admin %} <a href="{% url 'add_news' %}" class="btn" >Добавить новость</a> {% endif %}
+</div>
+{% endblock %}
 
     <div class="main-news">
         <div class="title">Главные новости</div>
-        <div class="news"><a>{% block content %} {% endblock %}</a></div>
+        <div class="news" ><a>{% block content %} {% endblock %}</a></div>
 
     </div>
 
