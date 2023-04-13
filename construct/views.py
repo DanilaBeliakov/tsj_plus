@@ -249,7 +249,7 @@ def add_statement(request):
                     'tsj_name': tsj_name,
                    }
         
-        doc = DocxTemplate("contruct/statement.docx")
+        doc = DocxTemplate("statement.docx")
         doc.render(context)
 
         now = datetime.datetime.now()
@@ -310,7 +310,7 @@ def add_protocol(request):
                     'notification': notify,
                    }
         
-        doc = DocxTemplate("contruct/protocol.docx")
+        doc = DocxTemplate("protocol.docx")
         doc.render(context)
         now = datetime.datetime.now()
         filename = f"{now.strftime('%Y-%m-%d_%H-%M-%S')}_{uuid.uuid4().hex}.docx"
