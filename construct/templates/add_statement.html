@@ -20,12 +20,12 @@
     {% for elect in now_elections %}
     <p>Причина голосования: {{elect.question}} <br />
         Введите решение:
-        <input name= {{elect.election_id}} />
+        <input type = "text" name= {{elect.election_id}} />
     <br>
     </p>
     {% endfor %}
 
-    <input type="submit" value = "Создать бюллетень" ><br>
+    <input type="submit" value = "Создать бюллетень" class="btn9" ><br>
 </form>
 
 {% endblock %}

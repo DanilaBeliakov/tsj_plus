@@ -33,15 +33,16 @@
         color: white;
         border-radius:5px;
         box-sizing: border-box;
+        position: relative;
+        top:-50px;
 		}
 		form{
             background-color: #AF8D86;
-            padding: 30px;
+            padding: 20px;
             border-radius: 30px;
             box-shadow: -15px 15px 0 0 #000000;
             box-sizing: border-box;
         }
-
         .password {
 	    position: relative;
         }
@@ -59,8 +60,8 @@
         }
         p{
             margin-left:0px;
-            margin-top: -590px;
-            margin-right: -480px;
+            margin-top: -450px;
+            margin-right: -470px;
         }
         input[type=checkbox] {
             margin-top: -5px;
@@ -69,7 +70,7 @@
         h6{
             margin-top: -28px;
             margin-right: -20px;
-            font-size: 15px;
+            font-size: 25px;
         }
     </style>
 
@@ -89,7 +90,7 @@
 </head>
 <body>
      <p>
-    <img src="https://i.ibb.co/5FwLsBB/logo.png" alt="logo" border="0" height="480" width="500">
+    <img src="https://i.ibb.co/cXnWhj2/3.png" alt="logo"  height="470" width="500">
     </p>
     <form method="POST">
         {% csrf_token %}

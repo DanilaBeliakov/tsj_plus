@@ -251,62 +251,89 @@ input[type="time"] {
   width: 200px;
   line-height: 10px;
 }
-.adding{
+.ad{
+  margin-top: -6%;
+}
+.selected{
   position: relative;
-  top: 30px ;
-  right: -10%;
+  margin-top: -20px;
+  margin-left: -9px;
+}
+#second-choice{
+  margin-top: 0%;
+}
+.te{
+  position: relative;
+  top: 13%;
+}
+.adding{
+  position:relative;
+  top: 60%;
+  bottom: 100%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #5F4842;
   color: #fff;
-  padding: 10px 20px;
+  padding: 0.3% 1.5%;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 20px;
+  font-size: 70%;
   border-radius: 5px;
   box-sizing: border-box;
-  height: 50px;
-  border: 2px solid rgba(225, 226, 230, 0.2);
-  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.3);
+  height: 6%;
+  border: 2% solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center ; /* Выравнивание по горизонтали */
+  align-items: center; /* Выравнивание по вертикали */
 }
 .adding2{
   position: relative;
-  top: -20px ;
-  right: -10%;
+  top: 65%;
+  bottom: 100%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #5F4842;
   color: #fff;
-  padding: 10px 20px;
+  padding: 0.3% 1.5%;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 20px;
+  font-size: 70%;
   border-radius: 5px;
   box-sizing: border-box;
-  height: 50px;
-  border: 2px solid rgba(225, 226, 230, 0.2);
-  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.3);
+  height: 6%;
+  border: 2% solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center ; /* Выравнивание по горизонтали */
+  align-items: center; /* Выравнивание по вертикали */
 }
 .small{
   margin-top: -2%;
 }
 .adding3{
   position: relative;
-  top: 15px ;
-  right: -5.5%;
+  top: 85%;
+  bottom: 100%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #5F4842;
   color: #fff;
-  padding: 10px 20px;
+  padding: 0.3% 1.5%;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 20px;
+  font-size: 70%;
   border-radius: 5px;
   box-sizing: border-box;
-  height: 50px;
-  border: 2px solid rgba(225, 226, 230, 0.2);
-  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.3);
+  height: 6%;
+  border: 2% solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center ; /* Выравнивание по горизонтали */
+  align-items: center; /* Выравнивание по вертикали */
 }
 .btn{
   position: absolute;
@@ -315,69 +342,77 @@ input[type="time"] {
   transform: translate(-50%, -50%);
   background-color: #5F4842;
   color: #fff;
-  padding: 0.5em 2em;
+  padding: 1.15% 2%;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 1em;
+  font-size: 100%;
   border-radius: 2px;
   box-sizing: border-box;
-  height: 2em;
-  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  height: 20%;
+  border: 0.05em solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
-  
+  display: flex;
+  justify-content: center; /* Выравнивание по горизонтали */
+  align-items: center; /* Выравнивание по вертикали */
 }
 .btn2{
   position: absolute;
-  top: 75%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #5F4842;
   color: #fff;
-  padding: 0.5em 2em;
+  padding: 1.15% 2%;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 1em;
+  font-size: 100%;
   border-radius: 2px;
   box-sizing: border-box;
-  height: 2em;
-  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  height: 20%;
+  border: 0.05em solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center; /* Выравнивание по горизонтали */
+  align-items: center; /* Выравнивание по вертикали */
 }
 .btn3{
   position: absolute;
-  top: 75%;
-  left: 49%;
+  top: 80%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #5F4842;
   color: #fff;
-  padding: 0.5em 2em;
+  padding: 1.15% 2%;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Ubuntu Condensed', sans-serif;
-  font-size: 1em;
-  border-radius: 2px;
+  font-size: 100%;
+  border-radius: 5px;
   box-sizing: border-box;
-  height: 2em;
-  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  height: 10%;
+  border: 0.05em solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center; /* Выравнивание по горизонтали */
+  align-items: center; /* Выравнивание по вертикали */
 }
 .btn4{
   position: absolute;
   top: 105%;
-  left: 49%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: #5F4842;
   color: #fff;
-  padding: 0.5em 2em;
+  padding: 0.1em 1em;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Ubuntu Condensed', sans-serif;
   font-size: 1em;
-  border-radius: 2px;
+  border-radius: 5px;
   box-sizing: border-box;
-  height: 2em;
+  height: 8%;
   border: 0.1em solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -441,4 +476,356 @@ input[type="radio"] label {
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
   text-align: center;
 }
+.btn7{
+  position: absolute;
+  top: 80%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
 
+.btn8{
+  position: relative;
+  top: 90px;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn9{
+  position: absolute;
+  top: 90%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.1% 2%;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 6%;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn10{
+  position: absolute;
+  top: 60%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn11{
+  position: absolute;
+  top: 55%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn12{
+  position: absolute;
+  top: 48%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.lab1{
+  color: #000;
+}
+.btn13{
+  position: relative;
+  top: -35px;
+  left: 800px;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5% 1.5%;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 5%;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn14{
+  position: absolute;
+  top: 68.8%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5% 1.5%;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 0.8em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 5%;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn15{
+  position: absolute;
+  top: 48%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn16{
+  position: absolute;
+  top: 85%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn17{
+  position: absolute;
+  top: 55%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn18{
+  position: absolute;
+  top: 63%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn19{
+  position: absolute;
+  top: 71%;
+  left: 72%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn20{
+  position: absolute;
+  top: 80%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn21{
+  position: absolute;
+  top: 54%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn22{
+  position: absolute;
+  top: 61%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn23{
+  position: absolute;
+  top: 68%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.btn24{
+  position: absolute;
+  top: 80%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 1em;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 2em;
+  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.lab2{
+  position: absolute;
+  top: 72%;
+  left: 39%;
+  color: #000;
+
+}

@@ -2,31 +2,31 @@
 
 {% block content %}
 
-<h1>{{meeting.title}}</h1>
+<h3>{{meeting.title}}</h3>
 <br>
 
 {% if meeting.stage == 1 %}
-    <h1>Текущая стадия: выбраны пункты для голосования</h1>
-    <a href="{% url 'notification_view' %}"> Создать уведомление </a><br>
+    <h3>Текущая стадия: выбраны пункты для голосования</h3>
+    <a href="{% url 'notification_view' %}"class="btn3"> Создать уведомление </a><br>
 {% endif %}
 
 {% if meeting.stage == 2 %}
-<h1>Текущая стадия: создано уведомление</h1>
-<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+<h3>Текущая стадия: создано уведомление</h3>
+<a href="{% url 'get_notification_file' %}" class="btn6"> Скачать уведомление </a><br>
 <br> <br>
-<a href="{% url 'add_statement' %}"> Создать бюллетень </a><br>
+<a href="{% url 'add_statement' %}" class="btn7"> Создать бюллетень </a><br>
 {% endif %}
 
 {% if meeting.stage == 3 %}
-<h1>Текущая стадия: созданы бюллетени</h1>
-<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<h3>Текущая стадия: созданы бюллетени</h3>
+<a href="{% url 'get_notification_file' %}" class="btn6"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}" class="btn7"> Скачать бюллетень </a><br>
 <br><br>
 {% if now_user.is_admin %}
 <form method="post">
     {% csrf_token %}
     <input type="hidden" name='status' value="START" />
-    <input type="submit" value = "Запустить голосование" >
+    <input type="submit" class="btn10" value = "Запустить голосование" >
 </form>
 {% else %}
 Администратор может запустить голосование
@@ -34,35 +34,35 @@
 {% endif %}
 
 {% if meeting.stage == 4 %}
-<h1>Текущая стадия: голосование начато</h1>
+<h3>Текущая стадия: голосование начато</h3>
 
-<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn11"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}"class="btn12"> Скачать бюллетень </a><br>
 <br><br>
 
-Если вы еще не проголосовали, то можете это сделать по ссылке <br>
+<label class = "lab1">Если вы еще не проголосовали, то можете это сделать по ссылке </label><br>
 
-<a href="{% url 'index_voting' %}">Голосование</a>
+<a href="{% url 'index_voting' %}" class="btn13">Голосование</a>
 
 {% if now_user.is_admin %}
-    Вы можете добавить в систему голоса, внесенные оффлайн<br>
-    <a href="/voting/add_offline?id={{ meeting.meeting_id }}"> Добавить оффлайн голоса</a><br>
-    Посмотреть результаты голосования
-    <a href="/voting/voting_results?id={{ meeting.meeting_id }}"> Результаты голосования</a><br>
+<label class = "lab1">Вы можете добавить в систему голоса, внесенные оффлайн</label><br>
+    <a href="/voting/add_offline?id={{ meeting.meeting_id }}" class="btn14"> Добавить оффлайн голоса</a><br><br>
+    <label class = "lab1">Посмотреть результаты голосования</label>
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="btn15"> Результаты голосования</a><br>
 {% endif %}
 {% if quorum == 0 %}
-    Кворум не достигнут!<br>
-    Чтобы завершить голосование, и перейти к составлению протокола нужно 50% голосов<br>
+<label class = "lab1">Кворум не достигнут!</label><br>
+<label class = "lab1">Чтобы завершить голосование, и перейти к составлению протокола нужно 50% голосов</label><br>
 {% else %}
-    Кворум достигнут!<br>
+<label class = "lab1">Кворум достигнут!</label><br>
     {% if now_user.is_admin %}
     <form method="post">
         {% csrf_token %}
         <input type="hidden" name='status' value="STOP" />
-        <input type="submit" value = "Завершить голосование" >
+        <input type="submit" class="btn16" value = "Завершить голосование" >
     </form>
     {% else %}
-    Администратор может завершить голосование<br>
+    <label class = "lab1">Администратор может завершить голосование</label><br>
     {% endif %}
 
 {% endif %}
@@ -70,30 +70,30 @@
 {% endif %}
 
 {% if meeting.stage == 5 %}
-<h1>Текущая стадия: голосование завершено</h1>
+<h3>Текущая стадия: голосование завершено</h3>
 
-<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn17"> Скачать уведомление  </a><br>
+<a href="{% url 'get_statement_file' %}" class="btn18"> Скачать бюллетень </a><br>
 <br><br>
 
 
 {% if now_user.is_admin %}
-    Посмотреть результаты голосования
-    <a href="/voting/voting_results?id={{ meeting.meeting_id }}">Результаты голосования</a><br>
-    <a href="{% url 'add_protocol' %}"> Создать Протокол </a><br>
+<label class = "lab1">Посмотреть результаты голосования</label>
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="btn19">Результаты голосования</a><br>
+    <a href="{% url 'add_protocol' %}" class="btn20"> Создать Протокол </a><br>
 {% endif %}
 {% endif %}
 
 {% if meeting.stage == 6 %}
 
-<H1>СОБРАНИЕ ЗАВЕРШЕНО</H1>
+<h3>СОБРАНИЕ ЗАВЕРШЕНО</h3>
 
-<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
-<a href="{% url 'get_protocol_file' %}"> Скачать протокол </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn21"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}"class="btn22"> Скачать бюллетень </a><br>
+<a href="{% url 'get_protocol_file' %}"class="btn23"> Скачать протокол </a><br>
 {% if now_user.is_admin %}
-    Посмотреть результаты голосования
-    <a href="/voting/voting_results?id={{ meeting.meeting_id }}">Результаты голосования</a><br>
+<label class = "lab2">Посмотреть результаты голосования</label>
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="btn24">Результаты голосования</a><br>
 {% endif %}
 <br><br>
 
