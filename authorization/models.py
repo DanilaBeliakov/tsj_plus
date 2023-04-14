@@ -24,5 +24,5 @@ class houses(models.Model):
     address = models.CharField(max_length=200)
     house_area = models.FloatField(default=1000)
     tsj_name = models.CharField(max_length=200, default="")
-    inn = models.CharField(max_length=10, default="")
+    inn = models.CharField(max_length=13, default="")
     ogrn = models.CharField(max_length=13, default="")
