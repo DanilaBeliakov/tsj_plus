@@ -12,7 +12,7 @@
       <form method="post">
         <strong><h3>Добавить оффлайн голоса:</h3></strong>
           {% csrf_token %}
-          <strong>{{vote.question}}</strong><br>
+          <strong>{{ vote.solution }}</strong><br>
           <p>
             <label>Имя</label><br>
             <input type="text" name = "user_name" /><br>

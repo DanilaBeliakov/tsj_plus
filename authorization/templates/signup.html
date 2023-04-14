@@ -11,11 +11,9 @@
         }
 
         body {
-          display: flex;
-          height: 100vh;
           justify-content: center;
           align-items: center;
-		  font-size: 30px;
+		  font-size: 25px;
 		  background: #432E36;
           font-family: 'Trebuchet MS', Helvetica, sans-serif;
           text-align: center;
@@ -35,12 +33,17 @@
         border-radius:5px;
         box-sizing: border-box;
 		}
+
 		form{
             background-color: #AF8D86;
             padding: 30px;
             border-radius: 30px;
             box-shadow: -15px 15px 0 0 #000000;
             box-sizing: border-box;
+            width: 30%;
+            margin-left: 35%;
+            margin-top: -10%;
+            margin-bottom: 5%;
         }
 
         .password {
@@ -58,11 +61,7 @@
         .password-control.view {
 	    background: url(https://snipp.ru/demo/495/no-view.svg) 0 0 no-repeat;
         }
-        p{
-            margin-left:0px;
-            margin-top: -590px;
-            margin-right: -480px;
-        }
+
         input[type=checkbox] {
             margin-top: -5px;
             margin-right: 380px;
@@ -86,40 +85,14 @@
             }
             return false;
         }
+    </script>
 
-        function ValidateEmail(input) {
-            var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-            if (input.value.match(validRegex)) {
-                return true;
-            } else {
-                alert("Неправильный email-адрес!");
-                return false;
-            }
-        }
-        function ValidateName(input) {
-            var validRegex = /^[а-яА-Я ]*$/;
-            if (input.value.match(validRegex)) {
-                return true;
-            } else {
-                alert("Имя должно состоять только из киррилических символов");
-                return false;
-            }
-        }
-        function ValidateForm() {
-            var valid_email = ValidateName(document.form1.email);
-            var valid_name = ValidateName(document.form1.full_name);
-            if (valid_email && valid_name) return true;
-            return false;
-        }
-
-
-        </script>
 </head>
 <body>
-    <p>
+
     <img src="https://i.ibb.co/5FwLsBB/logo.png" alt="logo" border="0" height="480" width="500">
-    </p>
-    <form name="form1" method="POST">
+
+    <form method="POST">
         {% csrf_token %}
         {{ form.full_name.label }}
         <br>
@@ -152,13 +125,11 @@
             <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
         </div>
 
-
         <input type="checkbox" name="checkbox" class="myfield" required id="id_checkbox" style="width: 20px; height: 20px;">
         <br>
         <h6>Согласие на обработку персональных данных</h6>
         <br>
         <a href="/auth"><h6>Уже зарегистрированы?</h6></a>
-        <br>
     <input type="submit" value="Регистрация" style="width: 400px; height: 50px;">
 </form>
 </body>

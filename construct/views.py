@@ -12,6 +12,7 @@ from .models import meetings, temp_elections, notification,statement, protocol
 sys.path.append(os.getcwd())
 from voting.models import elections
 from authorization.models import houses, users
+from news.models import news
 from docxtpl import DocxTemplate
 from .forms import NotificationForm
 from .forms import NotificationForm
@@ -20,14 +21,18 @@ from io import BytesIO
 import uuid
 from django.conf import settings
 base_path = os.path.join(settings.BASE_DIR, 'path', 'to', 'file')
+from .forms import get_minimum_date, get_maximum_date
+
 
 def index_construct(request):
     all = meetings.all_elements(house=request.session['house_id'])
     now_user = users.objects.get(email = request.session['email'])
+
+    is_index_meeting = True
     return render(
             request,
             'index_construct.html',
-            context = {'all':all, 'now_user': now_user},
+            context = {'all':all, 'now_user': now_user, 'is_index_meeting': is_index_meeting},
     )
 
 def meeting_view(request):
@@ -48,17 +53,23 @@ def meeting_view(request):
                 elem.save()
                 meeting.stage = 5
                 meeting.save()
-        
+
     meeting_id = request.GET.get('id')
     meeting = meetings.objects.get(meeting_id=meeting_id)
     request.session['meeting_id'] = meeting_id
-    now_elections = elections.objects.filter(meeting = meeting)
+    now_elections = elections.objects.filter(meeting=meeting)
     quorum = 1
     for elect in now_elections:
         if elect.is_quorum == 0:
             quorum = 0
-    now_user = users.objects.get(email = request.session['email'])
-    return render(request, 'meeting.html', context={'meeting' : meeting, 'quorum' : quorum, 'now_user' : now_user})
+    now_user = users.objects.get(email=request.session['email'])
+    if now_user.user_id == meeting.initiator_id:
+        is_initiator = True
+    else:
+        is_initiator = False
+    return render(request, 'meeting.html',
+                  context={'meeting': meeting, 'quorum': quorum, 'now_user': now_user, "is_initiator": is_initiator})
+
 
 def add_meeting(request, voting_mas = []):
     if request.method == "POST":
@@ -73,6 +84,7 @@ def add_meeting(request, voting_mas = []):
                 new_elect.num_in_meeting = num_in_meeting_max + 1
                 new_elect.question = new
                 new_elect.house_id = request.session['house_id']
+
                 new_elect.save()
                 new_elections = temp_elections.objects.filter(house_id = request.session['house_id'])
             else:
@@ -80,11 +92,13 @@ def add_meeting(request, voting_mas = []):
         else:
             add_elections = temp_elections.objects.filter(house_id = request.session['house_id'])
             new_meeting = meetings()
+            now_user = users.objects.get(email=request.session['email'])
             now_house = houses.objects.get(id = request.session['house_id'])
             new_meeting.stage = 1
             new_meeting.title = request.POST.get('title')
             new_meeting.house_id = now_house.id
             new_meeting.date = "2001-01-01"
+            new_meeting.initiator_id = now_user.user_id
             new_meeting.save()
             for elem in add_elections:
                 elect = elections()
@@ -99,6 +113,12 @@ def add_meeting(request, voting_mas = []):
                 elect.is_working = 0
                 elect.save()
             link = "/construct/meeting/?id=" + str(new_meeting.meeting_id)
+            add_new = news()
+            add_new.news_text = "Собрание под названием " + new_meeting.title + " создано. Вы можете перейти по ссылке на страницу этого собрания, нажав на новость."
+            add_new.house_id = now_house.id
+            add_new.meeting = new_meeting
+            add_new.need_link = True
+            add_new.save()
             return redirect(link)
     else:
         to_del = temp_elections.objects.filter(house_id = request.session['house_id'])
@@ -268,13 +288,17 @@ def add_statement(request):
         link = "/construct/meeting/?id=" + str(meeting.meeting_id)
         return redirect(link)
     else:
-        meeting = meetings.objects.get(meeting_id = request.session['meeting_id'])
-        now_elections = elections.choose_elements(house_id = request.session['house_id'],meeting_id = meeting.meeting_id)
+        min_blanks = str(get_minimum_date(21))
+        min_pub = str(get_minimum_date(21))
+        max_pub = str(get_maximum_date(84))
+        meeting = meetings.objects.get(meeting_id=request.session['meeting_id'])
+        now_elections = elections.choose_elements(house_id=request.session['house_id'], meeting_id=meeting.meeting_id)
+        # get minimum_date
         return render(request,
-                     'add_statement.html',
-                      context={'now_elections' : now_elections}
+                      'add_statement.html',
+                      context={'now_elections': now_elections, 'min_blanks': min_blanks, 'min_pub': min_pub,
+                               'max_pub': max_pub}
                       )
-
 
 def add_protocol(request):
     if request.method == 'POST':
@@ -323,6 +347,12 @@ def add_protocol(request):
         meeting.protocol = instance
         meeting.save()
         link = "/construct/meeting/?id=" + str(meeting.meeting_id)
+        add_new = news()
+        add_new.news_text = "Собрание под названием " + meeting.title + " завершено. Вы можете посмотреть информацию об этом собрании, нажав на новость."
+        add_new.house_id = meeting.house_id
+        add_new.meeting = meeting
+        add_new.need_link = True
+        add_new.save()
         return redirect(link)
     else:
         return render(request, 'add_protocol.html', context={})

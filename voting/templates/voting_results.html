@@ -33,7 +33,7 @@
         <td>ЗАВЕРШЕНО</td>
         {% endif %}
 
-        <td>{{now.question}}</td>
+        <td>{{now.solution}}</td>
         <td>{{now.voited_for_part}}%</td>
         <td>{{now.voited_against_part}}%</td>
         <td>{{now.voited_idk_part}}%</td>
@@ -57,7 +57,7 @@
 
             {% if forloop.first %}
             
-                    <strong>{{now.question}} <br></strong>
+                    <strong>{{ now.solution }} <br></strong>
             <br>
             <table>
             <tr>

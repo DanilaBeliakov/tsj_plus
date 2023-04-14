@@ -1,0 +1,13 @@
+{% extends "base_news.html" %}
+
+{% block content %}
+
+
+  {% for new in my_news %}
+  <div class="news">
+    <a href="/construct/meeting?id={{ new.meeting.meeting_id }}"> <strong>{{new.meeting.title}}</strong><br>
+      {{new.news_text|safe}}</a>
+  </div>
+  {% endfor %}
+
+{% endblock %}

@@ -2,19 +2,21 @@
 
 {% block content %}
 
-<strong><h3>Все документы</h3></strong>
-
-
+<div class="news">
+<a><h3>Все документы</h3></a>
+</div>
 {% for meeting in my_meetings %}
 
- 
-<p>
-  <strong>{{meeting.title}}<br></strong>
-  <a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
-<a href="{% url 'get_protocol_file' %}"> Скачать протокол </a><br>
+<div class="news">
+<a>
+  <h3>{{meeting.title}}</h3>
+  <br>
+  <a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
+  <a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
+  <a href="{% url 'get_protocol_file' %}" class="meeting_names"> Скачать протокол </a><br>
 
-</p>
+  </a>
+  </div>
 
 
 {% endfor %}

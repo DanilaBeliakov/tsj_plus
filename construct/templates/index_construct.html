@@ -1,14 +1,13 @@
 {% extends "base_construct.html" %}
 
 {% block content %}
-
-{% for elem in all %}
+  {% for elem in all %}
   <div class="news">
-  <a href="meeting?id={{ elem.meeting_id }}" class="btn"> {{ elem.title }}</a>
-  {% endfor %}
-  {% if now_user.is_admin %}
-    <a href="{% url 'add_meeting' %}" class="btn2">Создать новое собрание</a>
-  {% endif %}
+  <a href="meeting?id={{ elem.meeting_id }}" class="meeting_names">
+    <h3>{{elem.title}}<br></h3>
+  </a>
   </div>
+  {% endfor %}
+
 
 {% endblock %}

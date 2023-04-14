@@ -2,17 +2,16 @@
 
 {% block content %}
 
-<strong class="selected">На данный момент выбрано:</strong><br>
-<div class="te">
+<strong>На данный момент выбрано:</strong><br>
 {% for elem in new_elections %}
 {{elem.question}} <br>
 {% endfor %}
-</div>
 
-<form method="post" class="ad">
+
+<form method="post">
     {% csrf_token %}
     <p>
-        <strong>Выберите сферу вопросов собрания</strong>
+        <strong>Выберите сферу вопросов собрания</strong><br />
         <select id = "first-choice" class="first">
             <option>Выберите</option>
             <option>Устав ТСЖ</option>

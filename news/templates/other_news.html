@@ -1,0 +1,14 @@
+{% extends "base_news.html" %}
+
+{% block content %}
+
+
+  {% for new in my_news %}
+  <div class="news">
+  <a class = "just_news">
+    {{new.news_text|safe}}
+  </a>
+  </div>
+  {% endfor %}
+
+{% endblock %}

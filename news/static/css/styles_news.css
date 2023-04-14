@@ -94,8 +94,8 @@
       font-family: 'Ubuntu Condensed', sans-serif;
       font-size: 1.5em;
       position: absolute;
-      width: 250px;
-      height: 130px;
+      width: 300px;
+      height: 140px;
       margin-left: 83%;
       margin-top: 0.5%;
       background: linear-gradient(180deg, rgba(175, 141, 134, 0.94) -30.29%, rgba(175, 141, 134, 0.97) -30.27%, #FFFFFF 144.92%);
@@ -136,6 +136,7 @@
       margin: 1%;
       font-size: 0.8em;
       color: #9d999d;
+      
     }
     
     .news:last-child {
@@ -188,3 +189,11 @@ top: 17px;
     margin-top: 0px;
     margin-right: 0; 
   }
+  
+  a:hover {
+    color: #fff;
+  }
+
+.just_news:hover {
+  color: #000;
+}

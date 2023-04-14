@@ -32,6 +32,7 @@ class meetings(models.Model):
     notification = models.ForeignKey(notification, on_delete = models.CASCADE, null = True, blank = True)
     statement = models.ForeignKey(statement, on_delete = models.CASCADE, null = True, blank = True)
     protocol = models.ForeignKey(protocol, on_delete = models.CASCADE, null = True, blank = True)
+    initiator_id = models.IntegerField(default=0)
 
     def all_elements(house):
         elements = meetings.objects.filter(house_id = house).order_by('-date')

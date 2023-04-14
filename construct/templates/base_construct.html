@@ -21,11 +21,14 @@
 
      {% endblock %}
    </div>
-   
+  {% if is_index_meeting %}
+    <a href="{% url 'add_meeting' %}">Создать новое собрание</a>
+  {% endif %}
    <div class="main-news">
-    <div class="title">Собрание</div>
+    <div class="title">Собрания</div>
     <div class="news" ><a>{% block content %} {% endblock %}</a></div>
 </div>
+
    
 
 </body>

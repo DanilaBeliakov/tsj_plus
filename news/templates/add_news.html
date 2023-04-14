@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +9,6 @@
     <form method="post">
         {% csrf_token %}
         <p>
-              Тип новости:<br />
-            <select class= "box" name="type">
-                <option>Уведомление</option>
-                <option>Итог собрания</option>
-             </select>
-
-        </p>
-        <p>
-            <label>Введите дату новости (год-месяц-день)</label><br>
-            <input type="date" class= "date" id="date" name = "date" />
         </p>
             <label>Введите текст новости:</label><br>
             <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>

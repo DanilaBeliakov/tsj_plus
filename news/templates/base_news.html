@@ -7,6 +7,7 @@
   <!-- Добавление дополнительного статического CSS файла -->
     {% load static %}
     <link rel="stylesheet" href="\static\css\styles_news.css">
+
 <body >
   <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" class="logo" height="100" width="200">
     <img src="https://i.ibb.co/jkwgNVW/image.png" alt="image1" class="image1" height="130" width="190">
@@ -26,9 +27,9 @@
     <div class="container">
     <ul>
     {% block sidebar %}
-    <li><a href="{% url 'index_news' %}"> Все</a></li>
-    <li><a href="{% url 'notes' %}">Уведомления</a></li>
-    <li><a href="{% url 'finals' %}">Итоги собраний</a></li>
+    <li><a href="{% url 'index_news' %}"> Все новости</a></li>
+    <li><a href="{% url 'meetings_news' %}">Новости собраний</a></li>
+    <li><a href="{% url 'other_news' %}">Остальные новости</a></li>
   </ul>
   </div>
 <div class="wrapper">
@@ -37,7 +38,8 @@
 {% endblock %}
 
     <div class="main-news">
-        <div class="title">Главные новости</div>
+        <div class="title"> Новости для ТСЖ {{now_house.tsj_name}}, расположенного по адресу {{now_house.address}}</div>
+        
         <div class="news" ><a>{% block content %} {% endblock %}</a></div>
 
     </div>
