@@ -201,3 +201,7 @@ input[type=file] {
   margin-left: -20px;
 } */
 
+.meeting_names:hover {
+    color: #ffe;
+}
+
