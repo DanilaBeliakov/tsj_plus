@@ -49,7 +49,7 @@ class NotificationForm(forms.Form):
     time_of_end = forms.DateTimeField(required=False, label='Время окончания заочного голосования:',
                                       widget=forms.TimeInput(format='%H:%M', attrs={'type': 'time', 'value': '12:00'}))
 
-    date_of_counting = forms.DateTimeField(label='Дата подсчета голосов:',
+    date_of_counting = forms.DateTimeField(label='Дата подведения итогов:',
                                            widget=forms.DateInput(attrs={'type': 'date'}))
     time_of_counting = forms.DateTimeField(label='Время подсчета голосов:',
                                            widget=forms.TimeInput(format='%H:%M', attrs={'type': 'time'}))
