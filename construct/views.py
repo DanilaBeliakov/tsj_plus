@@ -26,7 +26,7 @@ from .forms import get_minimum_date, get_maximum_date
 
 def index_construct(request):
     all = meetings.all_elements(house=request.session['house_id'])
-    now_user = users.objects.get(email = request.session['email'])
+    now_user = users.objects.get(email=request.session['email'])
 
     is_index_meeting = True
     return render(

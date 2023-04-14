@@ -14,8 +14,8 @@ def index_voting(request):
     if request.method == "POST":
         vote = votes()
         elect = request.POST.get('election_id')
-        now_election = elections.objects.get(election_id = elect)
-        now_user = users.objects.get(email = request.session['email'])
+        now_election = elections.objects.get(election_id=elect)
+        now_user = users.objects.get(email=request.session['email'])
         vote.user = now_user
         vote.election = now_election
         now_vote = request.POST.get('vote')
@@ -54,7 +54,7 @@ def index_voting(request):
     return render(
             request,
             'index_voting.html',
-            context = {"my_meetings" : my_meetings, "now_user" : now_user},
+            context={"my_meetings": my_meetings, "now_user" : now_user},
     )
 
     

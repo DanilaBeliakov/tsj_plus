@@ -8,6 +8,11 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate
 
 
+def personal_data_page(request):
+    if request.method == "GET":
+        return render(request, "info.html")
+
+
 def sign_up_page(request):
     if request.method == "POST":
         # получение данных из POST-запроса на регистрацию

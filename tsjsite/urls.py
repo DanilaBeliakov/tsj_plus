@@ -10,6 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', auth.auth_page, name='auth'),
     path('signup/', auth.sign_up_page, name='signup'),
+    path('personal_info/', auth.personal_data_page, name='personal_info'),
     path('documents/', include('documents.urls')),
     path('news/', include('news.urls')),
     path('account/', include('personal_account.urls')),

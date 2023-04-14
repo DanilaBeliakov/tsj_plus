@@ -35,7 +35,7 @@ class meetings(models.Model):
     initiator_id = models.IntegerField(default=0)
 
     def all_elements(house):
-        elements = meetings.objects.filter(house_id = house).order_by('-date')
+        elements = meetings.objects.filter(house_id=house).order_by('-meeting_id')
         res = []
         for elem in elements:
             res.append(elem)

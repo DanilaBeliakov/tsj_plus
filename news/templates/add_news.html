@@ -8,22 +8,21 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        <p>
-        </p>
+        <br>
             <label>Введите текст новости:</label><br>
             <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
             <script>
                 CKEDITOR.replace("editor1");
             </script>
         <br>
+        <input type="submit" value="Опубликовать" >
         <br>
         <br>
-
-        <input type="submit" value = "Опубликовать" >
-        
+        <br>
+        <a class="go" href="{% url 'index_news' %}"> Перейти к новостям </a>
     </form>
 
-    <a class="go" href="{% url 'index_news' %}"> Перейти к новостям </a>
+
 
 </body>
 </html>

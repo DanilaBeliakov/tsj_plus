@@ -2,18 +2,16 @@
 
 {% block content %}
 <link rel="stylesheet" href="\static\css\styles_index.css">
-<div class="news"></div>
   {% for my_votes in my_meetings %}
-    <strong>{{my_votes.0.meeting.title}}</strong> <br>
+    <a>{{my_votes.0.meeting.title}}</a> <br>
      {% for vote in my_votes %}
-     <a>
-     <p>
-
-       {{ vote.solution }}<br>
+         <a>{{ vote.solution }}</a><br>
+         <div class="news">
+             <a>
       <form method="post">
         
         {% csrf_token %}
-        <p>
+
             Решение:<br />
             <select class= "box" name='vote'>
               <option>ЗА</option>
@@ -21,17 +19,15 @@
               <option>ВОЗДЕРЖУСЬ</option>
            </select> 
              <input type="hidden" name='election_id' value={{vote.election_id}} />
-        </p>
 
+        <br><br>
         <input type="submit" value = "Проголосовать" >
     </form>
-    
+             </a>
+         </div>
 
-  </p>
-   </a>
-  </div>
     {% endfor %}
-    -----------------------<br>
+
   {% endfor %}
 
 {% endblock %}
