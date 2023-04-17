@@ -143,9 +143,9 @@ def notification_view(request):
         time_of_counting = request.POST.get('time_of_counting')
         place_of_counting = request.POST.get('place_of_counting')
         type_of_initiator = request.POST.get('type_of_initiator')
-        representative_name = request.POST.get('type_of_initiator')
+        representative_name = request.POST.get('representative_name')
         attorney = request.POST.get('attorney')
-        if type_of_initiator == 'Представителем':
+        if type_of_initiator == '7':
             is_representative = True
         else:
             is_representative = False
@@ -164,19 +164,21 @@ def notification_view(request):
             face_to_face = True
             online = False
             voting = 'очное'
+            voting_text = 'очного'
         elif type_of_meeting == "2":
             face_to_face = False
             online = True
             voting = 'заочное'
+            voting_text = 'заочного'
         else:
             face_to_face = True
             online = True
             voting = 'очно-заочное'
+            voting_text = 'очно-заочного'
         if planned == "4":
             planned = 'очередное'
         else:
             planned = 'внеочередное'
-
         questions = []
         for val in now_elections:
             questions.append(val.question)
@@ -202,6 +204,7 @@ def notification_view(request):
                    'date_of_counting': date_of_counting,
                    'time_of_counting': time_of_counting,
                    'type_of_plans': planned,
+                   'voting_text' : voting_text,
                    }
         doc.render(context)
         now = datetime.datetime.now()
@@ -234,7 +237,7 @@ def add_statement(request):
         meeting = meetings.objects.get(meeting_id = request.session['meeting_id'])
         now_user = users.objects.get(email=request.session['email'])
         now_house = houses.objects.get(id=request.session['house_id'])
-        now_elections = elections.choose_elements(house_id = now_house.id, meeting_id = meeting.meeting_id)
+        now_elections = elections.choose_elements(house_id=now_house.id, meeting_id = meeting.meeting_id)
         tsj_name = now_house.tsj_name
         type_of_meeting = meeting.notification.type_of_voting
         if type_of_meeting == 'Очное':

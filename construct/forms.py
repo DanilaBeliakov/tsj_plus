@@ -1,6 +1,20 @@
 from django import forms
 import datetime
 
+NOTIFICATION_TIME = """
+      Уведомление о проведении общего собрания членов товарищества собственников жилья направляется в письменной форме лицом, по инициативе которого созывается общее собрание, и вручается каждому члену товарищества под расписку или посредством почтового отправления (заказным письмом) либо иным способом, предусмотренным решением общего собрания членов товарищества или уставом товарищества. Уведомление направляется не позднее чем за 10 дней до даты проведения общего собрания. (ст. 146 ЖК РФ)
+
+Обратите внимание! 
+При проведении общего собрания собственников с использованием системы администратору общего собрания должно быть передано отвечающее установленным требованиям сообщение о проведении соответствующего собрания не позднее чем за 14 дней до даты начала проведения общего собрания (ст. 47.1 ЖК РФ).
+"""
+
+VOTING_TIME = """
+Продолжительность голосования по вопросам повестки дня общего собрания собственников помещений в многоквартирном доме с использованием системы должна составлять не менее чем 7 дней и не более чем 60 дней с даты и времени начала проведения такого голосования (п.8 ст. 47.1 ЖК РФ).
+
+Голосование по вопросам повестки дня общего собрания собственников помещений в многоквартирном доме с использованием системы проводится без перерыва с даты и времени его начала и до даты и времени его окончания (п.9 ст. 47.1 ЖК РФ).
+
+"""
+
 
 def get_minimum_date(delta):
     now = datetime.datetime.now().date()  # текущая дата
@@ -38,14 +52,16 @@ class NotificationForm(forms.Form):
                                       )
 
     date_of_start = forms.DateTimeField(label='Дата начала собрания/онлайн голосования:', widget=forms.DateInput(
-        attrs={'type': 'date', 'value': get_minimum_date(14), 'min': get_minimum_date(14)}))
+        attrs={'title': NOTIFICATION_TIME, 'type': 'date', 'value': get_minimum_date(14), 'min': get_minimum_date(14), 'onchange': "setMinDate()"}))
     time_of_start = forms.DateTimeField(required=False, label='Время начала собрания:',
                                         widget=forms.TimeInput(format='%H:%M',
                                                                attrs={'type': 'time', 'value': '12:00'}))
     date_of_end = forms.DateTimeField(required=False, label='Дата окончания заочного голосования:',
-                                      widget=forms.DateInput(attrs={'type': 'date', 'value': get_minimum_date(21),
+                                      widget=forms.DateInput(attrs={'type': 'date',
                                                                     'min': get_minimum_date(21),
-                                                                    'max': get_maximum_date(74)}))
+                                                                    'title': VOTING_TIME,
+                                                                    'onchange': 'setCountingDate()',
+                                                                    }))
     time_of_end = forms.DateTimeField(required=False, label='Время окончания заочного голосования:',
                                       widget=forms.TimeInput(format='%H:%M', attrs={'type': 'time', 'value': '12:00'}))
 
@@ -60,8 +76,8 @@ class NotificationForm(forms.Form):
                                      label='Введите имена приглашенных на собрание лиц не из числа собственников (необязательно):',
                                      widget=forms.TextInput())
     CHOICES = [
-        ('4', 'Собственником'),
-        ('5', 'Представлителем'),
+        ('6', 'Собственником'),
+        ('7', 'Представлителем'),
     ]
     type_of_initiator = forms.ChoiceField(label='Кем является инициатор собрания:',
                                           widget=forms.RadioSelect(),

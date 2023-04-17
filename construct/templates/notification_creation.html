@@ -1,6 +1,45 @@
 {% extends "base_construct.html" %}
 
 {% block content %}
+<script>
+    function setMinDate() {
+        var dateOfStartField = document.getElementById("id_date_of_start");
+        var dateOfEndField = document.getElementById("id_date_of_end");
+        var dateOfCountingField = document.getElementById("id_date_of_counting");
+        var minDateValue = new Date(dateOfStartField.value);
+        var maxDateValue = new Date(dateOfStartField.value);
+
+        minDateValue.setDate(minDateValue.getDate() + 10);
+        maxDateValue.setDate(maxDateValue.getDate() + 60);
+      // Format the date value as a string in ISO format (YYYY-MM-DD)
+        var minFormattedDate = minDateValue.toISOString().substring(0, 10);
+        var maxFormattedDate = maxDateValue.toISOString().substring(0, 10);
+
+        dateOfEndField.min = minFormattedDate;
+        dateOfEndField.max = maxFormattedDate;
+    }
+
+    function setCountingDate() {
+          var dateField = document.getElementById("id_date_of_end");
+          var minDateField = document.getElementById("id_date_of_counting");
+
+          // Get the date value from the first input field
+          var dateValue = new Date(dateField.value);
+          var dateValue1 = new Date(dateField.value);
+
+          // Add 7 days to the date value
+          dateValue.setDate(dateValue.getDate() + 10);
+
+          // Format the date value as a string in ISO format (YYYY-MM-DD)
+          const formattedDate = dateValue.toISOString().substring(0, 10);
+          const formattedDate1 = dateValue1.toISOString().substring(0, 10);
+
+          // Set the formatted date as the min value of the second input field
+          minDateField.max = formattedDate;
+          minDateField.min = formattedDate1;
+    }
+
+</script>
 
 <form method="POST" class="notif">
     {% csrf_token %}
