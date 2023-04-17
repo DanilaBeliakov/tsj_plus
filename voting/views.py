@@ -111,46 +111,50 @@ def voting_results(request):
 
 def add_offline_votes(request):
     if request.method == "POST":
-        off_vote = offline_votes()
-        off_vote.user_name = request.POST.get('user_name')
-        off_vote.user_flat_number = int(request.POST.get('user_flat_number'))
-        off_vote.user_flat_area = float(request.POST.get('user_flat_area'))
-        off_vote.user_flat_share = float(request.POST.get('user_flat_share'))
-        elect = request.POST.get('election_id')
-        now_election = elections.objects.get(election_id = elect)
-        off_vote.election = now_election
-        now_vote = request.POST.get('vote')
+        meeting_id = request.GET.get('id')
+        meeting = meetings.objects.get(meeting_id=meeting_id)
+        now_house = houses.objects.get(id=request.session['house_id'])
+        now_elections = elections.aviable(house_id = now_house.id, meeting_id = meeting.meeting_id)
+        for now_election in now_elections:
 
-        if now_vote == "ЗА":
-            off_vote.result = 1
-            now_election.voited_for_area += off_vote.user_flat_area * off_vote.user_flat_share
-            now_election.voited_for_part = (now_election.voited_for_area / now_election.house.house_area)*100
-        elif now_vote == "ПРОТИВ":
-            off_vote.result = 0
-            now_election.voited_against_area += off_vote.user_flat_area * off_vote.user_flat_share
-            now_election.voited_against_part = (now_election.voited_against_area / now_election.house.house_area)*100
-        else:
-            off_vote.result = 2
-            now_election.voited_idk_area += off_vote.user_flat_area * off_vote.user_flat_share
-            now_election.voited_idk_part = (now_election.voited_idk_area / now_election.house.house_area)*100            
-        if (now_election.voited_for_part + now_election.voited_against_part + now_election.voited_idk_part) >= now_election.quorum_limit:
-            now_election.is_quorum = 1
-        else:
-            now_election.is_quorum = 0
-        off_vote.save()
-        now_election.save()
+            off_vote = offline_votes()
+            off_vote.user_name = request.POST.get('user_name')
+            off_vote.user_flat_number = int(request.POST.get('user_flat_number'))
+            off_vote.user_flat_area = float(request.POST.get('user_flat_area'))
+            off_vote.user_flat_share = float(request.POST.get('user_flat_share'))
+            off_vote.election = now_election
+            meeting_id = request.GET.get('id')
+
+            ses = str(now_election.election_id)
+            now_vote = request.POST.get(ses)
+
+            if now_vote == "ЗА":
+                off_vote.result = 1
+                now_election.voited_for_area += off_vote.user_flat_area * off_vote.user_flat_share
+                now_election.voited_for_part = (now_election.voited_for_area / now_election.house.house_area)*100
+            elif now_vote == "ПРОТИВ":
+                off_vote.result = 0
+                now_election.voited_against_area += off_vote.user_flat_area * off_vote.user_flat_share
+                now_election.voited_against_part = (now_election.voited_against_area / now_election.house.house_area)*100
+            else:
+                off_vote.result = 2
+                now_election.voited_idk_area += off_vote.user_flat_area * off_vote.user_flat_share
+                now_election.voited_idk_part = (now_election.voited_idk_area / now_election.house.house_area)*100
+            if (now_election.voited_for_part + now_election.voited_against_part + now_election.voited_idk_part) >= now_election.quorum_limit:
+                now_election.is_quorum = 1
+            else:
+                now_election.is_quorum = 0
+            off_vote.save()
+            now_election.save()
 
     my_meetings = []
     meeting_id = request.GET.get('id')
     meeting = meetings.objects.get(meeting_id=meeting_id)
     my_votes = elections.aviable(house_id = request.session['house_id'],meeting_id = meeting.meeting_id)
-    if len(my_votes) > 0:
-        my_meetings.append(my_votes)
-    my_meetings.reverse()
     return render(
             request,
             'add_offline.html',
-            context = {"my_meetings" : my_meetings, "meeting" : meeting},
+            context = {"my_votes" : my_votes, "meeting" : meeting},
     )
 
 

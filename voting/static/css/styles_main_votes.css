@@ -26,11 +26,11 @@
   position: relative;
   padding-bottom: 20px;
   margin: 0 34px 0 30px;
-  font-size: 17px;
+  font-size: 22px;
   text-transform: uppercase;
   display: inline-block;
   transition: color .2s;
-  color: #9d999d;
+  color: #432e36;
 }
 .menu-main a.current,
 .menu-main a:hover {
@@ -95,7 +95,7 @@
       text-transform: uppercase;
       font-weight: bold;
       border-radius: 30px;
-      color: #9d999d;
+      color: #432e36;
       padding: 1.2%;
       text-align: center;
     }
@@ -114,11 +114,11 @@
       font-size: 1.2em;
       text-decoration: none;
     }
-   .image1{
-        position: relative;
-        left: 10%;
-        top: 17px;
-        }
+    .image1{
+      position: relative;
+      left:0%;
+      top: 17px;
+      }
     .image2{
           position: relative;
           left: 48%;

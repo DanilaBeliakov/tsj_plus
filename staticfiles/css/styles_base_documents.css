@@ -31,11 +31,11 @@
   position: relative;
   padding-bottom: 20px;
   margin: 0 34px 0 30px;
-  font-size: 17px;
+  font-size: 22px;
   text-transform: uppercase;
   display: inline-block;
   transition: color .2s;
-  color: #9d999d;
+  color: #432e36;
 }
 
 .menu-main a.current,
@@ -92,12 +92,12 @@
     ul {
       box-sizing: border-box;
       font-family: 'Ubuntu Condensed', sans-serif;
-      font-size: 1.4em;
+      font-size: 1.5em;
       position: absolute;
-      width: 250px;
-      height: 130px;
-      margin-left: 83%;
-      margin-top: 0.5%;
+      width: 280px;
+      height: 140px;
+      margin-left: 80%;
+      margin-top: 1%;
       background: linear-gradient(180deg, rgba(175, 141, 134, 0.94) -30.29%, rgba(175, 141, 134, 0.97) -30.27%, #FFFFFF 144.92%);
       backdrop-filter: blur(25px); 
       border: 2px solid rgba(225, 226, 230, 0.2);
@@ -126,8 +126,8 @@
       text-transform: uppercase;
       font-weight: bold;
       border-radius: 30px;
-      color: #9d999d;
-      padding: 1.2%;
+      color: #432e36;
+      padding: 1.5%;
       text-align: center;
     }
     
@@ -152,7 +152,7 @@
       
     .image1{
       position: relative;
-      left: 10%;
+      left:0%;
       top: 17px;
       }
       .image2{

@@ -5,40 +5,36 @@
      <link rel="stylesheet" href="\static\css\styles_offline.css"> 
 </head>
 <body>
-    {%for my_votes in my_meetings %}
-    <strong>{{my_votes.0.meeting.title}}</strong> <br>
-    {% for vote in my_votes %}
     <p>
       <form method="post">
         <strong><h3>Добавить оффлайн голоса:</h3></strong>
           {% csrf_token %}
-          <strong>{{ vote.solution }}</strong><br>
           <p>
-            <label>Имя</label><br>
-            <input type="text" name = "user_name" /><br>
+            <label>ФИО</label><br>
+            <input type="text" name = "user_name" value = ФИО required /><br>
             <label>Номер квартиры</label><br>
-            <input type="text" name = "user_flat_number" /><br>
+            <input type="text" name = "user_flat_number" value = 0 required /><br>
             <label>Площадь квартиры</label><br>
-            <input type="text" name = "user_flat_area" /><br>
+            <input type="text" name = "user_flat_area" value = 0 required/><br>
             <label>Доля собственности</label><br>
-            <input type="text" name = "user_flat_share" /><br>
+            <input type="text" name = "user_flat_share" value = 0 required/><br>
+            {% for vote in my_votes %}
+            <strong>{{vote.solution}}</strong><br>
             Решение:<br />
-            <select class= "box" name= 'vote'>
+            <select class= "box" name= {{vote.election_id}} value = ВОЗДЕРЖАЛСЯ>
+                <option>ВОЗДЕРЖАЛСЯ</option>
                 <option>ЗА</option>
                 <option>ПРОТИВ</option>
-                <option>ВОЗДЕРЖАЛСЯ</option>
-             </select> 
+             </select> <br>
+             {% endfor %}
              <br><br>
              <input type="submit"  value = "Добавить голос" >
+              <br>
+              <br>
+              <a href="/construct/meeting?id={{ meeting.meeting_id }}"> Вернуться на страницу собрания</a>
             </p>
-            <input type="hidden" name='election_id' value={{vote.election_id}} />
         </form>
-        <br>
-        <br>
-    {% endfor %}
-    ---------------------<br>
-    {% endfor %}
-    <a href="/construct/meeting?id={{ meeting.meeting_id }}"> Вернуться на страницу собрания</a>
+
 
     
 

@@ -20,7 +20,7 @@
     {% for elect in now_elections %}
     <p>Причина голосования: {{elect.question}} <br />
         Введите решение:
-        <input name= {{elect.election_id}} />
+        <input type="text" name= {{elect.election_id}} />
     <br>
     </p>
     {% endfor %}

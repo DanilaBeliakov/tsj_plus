@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<h1>{{meeting.title}}</h1>
+<h3>{{meeting.title}}</h3>
 <br>
 
 {% if meeting.stage == 1 %}
-    <h1>Текущая стадия: выбраны пункты для голосования</h1>
+    <h3>Текущая стадия: выбраны пункты для голосования</h3>
     {% if now_user.is_admin or is_initiator %}
     <a href="{% url 'notification_view' %}" class="btn5"> Создать уведомление </a>
     <br>
@@ -14,7 +14,7 @@
 {% endif %}
 
 {% if meeting.stage == 2 %}
-<h1>Текущая стадия: создано уведомление</h1>
+<h3>Текущая стадия: создано уведомление</h3>
 <a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
 <br> <br>
 {% if now_user.is_admin or is_initiator %}
@@ -23,7 +23,7 @@
 {% endif %}
 
 {% if meeting.stage == 3 %}
-<h1>Текущая стадия: созданы бюллетени</h1>
+<h3>Текущая стадия: созданы бюллетени</h3>
 <a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
 <a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
 <br><br>
@@ -40,7 +40,7 @@
 {% endif %}
 
 {% if meeting.stage == 4 %}
-<h1>Текущая стадия: голосование начато</h1>
+<h3>Текущая стадия: голосование начато</h3>
 
 <a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
 <a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
@@ -85,32 +85,39 @@
 {% endif %}
 
 {% if meeting.stage == 5 %}
-<h1>Текущая стадия: голосование завершено</h1>
+<h3>Текущая стадия: голосование завершено</h3>
 
-<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+<a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
 <br><br>
 
 
 {% if now_user.is_admin %}
-    Посмотреть результаты голосования
-    <a href="/voting/voting_results?id={{ meeting.meeting_id }}">Результаты голосования</a><br>
-    <a href="{% url 'add_protocol' %}"> Создать Протокол </a><br>
+<strong style="color: black;" >Посмотреть результаты голосования</strong>
+        <br>
+        <br>
+        <br>
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="meeting_names">Результаты голосования</a>
+        <br>
+        <br>
+        <br>
+    <a href="{% url 'add_protocol' %}" class="btn5"> Создать Протокол </a><br>
 {% else %}
-    Протокол может создать только администратор
+<strong style="color: black;" >Протокол может создать только администратор</strong>
 {% endif %}
 {% endif %}
 
 {% if meeting.stage == 6 %}
 
-<H1>СОБРАНИЕ ЗАВЕРШЕНО</H1>
+<h3>СОБРАНИЕ ЗАВЕРШЕНО</h3>
 
-<a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
-<a href="{% url 'get_protocol_file' %}"> Скачать протокол </a><br>
+<a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
+<a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
+<a href="{% url 'get_protocol_file' %}" class="meeting_names"> Скачать протокол </a><br>
 {% if now_user.is_admin %}
-    Посмотреть результаты голосования
-    <a href="/voting/voting_results?id={{ meeting.meeting_id }}">Результаты голосования</a><br>
+<strong style="color: black;" >Посмотреть результаты голосования</strong>
+        <br>
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="meeting_names">Результаты голосования</a><br>
 {% endif %}
 <br><br>
 
@@ -119,4 +126,5 @@
 <br>
 
 <a href="meeting?id={{ elem.meeting_id }}"> {{ elem.title }}</a>
+
 {% endblock %}

@@ -30,11 +30,11 @@
   position: relative;
   padding-bottom: 20px;
   margin: 0 34px 0 30px;
-  font-size: 17px;
+  font-size: 22px;
   text-transform: uppercase;
   display: inline-block;
   transition: color .2s;
-  color: #9d999d;
+  color: #432e36;
 }
 
 .menu-main a.current,
@@ -88,11 +88,11 @@
       background: #AF8D86;
     }
 
-.image1{
-  position: relative;
-  left: 10%;
-  top: 17px;
-  }
+    .image1{
+      position: relative;
+      left:0%;
+      top: 17px;
+      }
   .image2{
     position: relative;
     left: 48%;
@@ -124,10 +124,11 @@
       text-transform: uppercase;
       font-weight: bold;
       border-radius: 30px;
-      color: #9d999d;
-      padding: 1%;
+      color: #432e36;
+      padding: 1.2%;
       text-align: center;
     }
+    
     .news {
       padding: 0%;
       border-bottom: 1px solid white;
@@ -478,6 +479,7 @@ input[type="radio"] label {
   border: 0.1em solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
   text-align: center;
+  margin: 10px 0;
 }
 
 .btn6 {
@@ -491,8 +493,22 @@ input[type="radio"] label {
   border-radius: 5px;
   height: 10%;
   width: 20%;
-  margin-left: 40%;
-  border: 0.1em solid rgba(225, 226, 230, 0.2);
+  margin-left: 38%;
+  border: 0.08em solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
   text-align: center;
+}
+input[type="submit"]{
+  background-color: #5F4842;
+  color: #fff;
+  padding: 0.3% 1.5%;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  font-size: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 6%;
+  border: 2% solid rgba(225, 226, 230, 0.2);
+  box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
 }

@@ -15,7 +15,7 @@
 
 .menu-main li:after {
   content: "|";
-  color: #606060;
+  color: #432e36;
   display: inline-block;
   vertical-align: top;
 }
@@ -31,11 +31,11 @@
   position: relative;
   padding-bottom: 20px;
   margin: 0 34px 0 30px;
-  font-size: 17px;
+  font-size: 22px;
   text-transform: uppercase;
   display: inline-block;
   transition: color .2s;
-  color: #9d999d;
+  color: #432e36;
 }
 
 .menu-main a.current,
@@ -94,10 +94,10 @@
       font-family: 'Ubuntu Condensed', sans-serif;
       font-size: 1.5em;
       position: absolute;
-      width: 300px;
+      width: 280px;
       height: 140px;
-      margin-left: 83%;
-      margin-top: 0.5%;
+      margin-left: 80%;
+      margin-top: 1%;
       background: linear-gradient(180deg, rgba(175, 141, 134, 0.94) -30.29%, rgba(175, 141, 134, 0.97) -30.27%, #FFFFFF 144.92%);
       backdrop-filter: blur(25px); 
       border: 2px solid rgba(225, 226, 230, 0.2);
@@ -106,7 +106,7 @@
     }
     
     .main-news {
-      border: 1px solid white;
+      border: 1.5px solid white;
       width: 80%;
       font-family: 'Ubuntu Condensed', sans-serif;
       font-size: 1.5em;
@@ -125,7 +125,7 @@
       text-transform: uppercase;
       font-weight: bold;
       border-radius: 30px;
-      color: #9d999d;
+      color: #432e36;
       padding: 1.5%;
       text-align: center;
     }
@@ -151,7 +151,7 @@
     .btn {
       position: relative;
       top: 180px ;
-      right: -85%;
+      right: -84%;
       transform: translate(-50%, -50%);
       background-color: #5F4842;
       color: #fff;
@@ -175,7 +175,7 @@
     }
 .image1{
 position: relative;
-left: 10%;
+left:0%;
 top: 17px;
 }
 .image2{

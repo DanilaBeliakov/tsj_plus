@@ -1,15 +1,16 @@
 
 {% extends "base_voting.html" %}
 {% block content %}
-    <strong><h3>Результаты голосования:</h3></strong>
+<link rel="stylesheet" type="text/css" href="\static\css\styles_voting_results.css">
+    <strong style="color: #260c1a"><h3>Результаты голосования:</h3></strong>
     <br> <br>
     </label>
 
-    <strong>{{meeting.title}}</strong><br>
+    <strong style="color: #260c1a">{{meeting.title}}</strong><br>
 
-    <strong> таблица результатов по каждому вопросу</strong>
+    <strong style="color: #260c1a"> таблица результатов по каждому вопросу</strong>
 
-    <table>
+    <table style="color: #260c1a">
         <tr>
             <th>Статус </th>
             <th>Вопрос </th>
@@ -20,7 +21,7 @@
         </tr>
 
     {% for now in only_elections %}
-    <tr>
+    <tr >
         {% if now.is_working == 0 %}
         <td>НЕ НАЧАТО</td>
         {% endif %}
@@ -48,7 +49,8 @@
     </table>
     
 <br><br>
-        Каждое голосование отдельно<br>
+
+<strong style="color: #260c1a">  Каждое голосование отдельно</strong><br>
 
 
         {% for elect in now_votes %}
@@ -57,10 +59,10 @@
 
             {% if forloop.first %}
             
-                    <strong>{{ now.solution }} <br></strong>
+                    <strong style="color: #260c1a">{{ now.solution }} <br></strong>
             <br>
             <table>
-            <tr>
+            <tr style="color: #260c1a">
                 <th>Тип голоса</th>
                 <th>Почта(для онлайн) </th>
                 <th>Имя </th>
@@ -69,40 +71,45 @@
                 <th>Удалить(для очного)</th>
             </tr>
             {% else %}
-                <tr>
+                <tr style="color: #260c1a">
                 {% if now.type == "Онлайн" %}
-                <td> Онлайн </td>
-                    <td> {{now.user.email}} </td>
-                    <td> {{now.user.full_name}} </td>
-                    <td> {{now.user.flat_number}} </td>
+                <td style="color: #260c1a"> Онлайн </td>
+                    <td style="color: #260c1a"> {{now.user.email}} </td>
+                    <td style="color: #260c1a"> {{now.user.full_name}} </td>
+                    <td style="color: #260c1a"> {{now.user.flat_number}} </td>
                     {% if now.result == 1 %}
-                    <td> "ЗА"</td>
+                    <td style="color: #260c1a"> "ЗА"</td>
                     {% endif %}
                     {% if now.result == 0 %}
-                    <td> "ПРОТИВ"</td>
+                    <td style="color: #260c1a"> "ПРОТИВ"</td>
                     {% endif %}
                     {% if now.result == 2 %}
-                    <td>"ВОЗДЕРЖАЛСЯ"</td>
-                    <td>-</td>
+                    <td style="color: #260c1a">"ВОЗДЕРЖАЛСЯ"</td>
+                    <td style="color: #260c1a">-</td>
                     {% endif %}
+                    <td style="color: #260c1a">
+                        <form method="post" style="color: #260c1a">
+                        </form>
+                    </td>
+                    <p></p>
                 {% endif %}
 
                 {% if now.type == "Очное" %}
-                    <td> Очное </td>
-                    <td>-</td>
-                    <td>{{now.user_name}} </td>
-                    <td>{{now.user_flat_number}}  </td>
+                    <td style="color: #260c1a"> Очное </td>
+                    <td style="color: #260c1a">-</td>
+                    <td style="color: #260c1a">{{now.user_name}} </td>
+                    <td style="color: #260c1a">{{now.user_flat_number}}  </td>
                     {% if now.result == 1 %} </td>
-                    <td> "ЗА" </td>
+                    <td style="color: #260c1a"> "ЗА" </td>
                     {% endif %}
                     {% if now.result == 0 %}
-                    <td>"ПРОТИВ" </td>
+                    <td style="color: #260c1a">"ПРОТИВ" </td>
                     {% endif %}
                     {% if now.result == 2 %}
-                    <td> "ВОЗДЕРЖАЛСЯ" </td>
+                    <td style="color: #260c1a"> "ВОЗДЕРЖАЛСЯ" </td>
                     {% endif %}
-                    <td>
-                    <form method="post">
+                    <td style="color: #260c1a">
+                    <form method="post" style="color: #260c1a">
                         {% csrf_token %}
                         <input type="hidden" name='election_id' value={{now.election.election_id}} />
                         <input type="hidden" name='vote_id' value={{now.vote_id}} />
@@ -115,10 +122,10 @@
         
         {% endfor %}
     </table>
-    -----------------------------------------------------------------------------------------------<br>
+    
     <br>
     {% endfor %}
 
-    <a href="/construct/meeting?id={{ meeting.meeting_id }}"> Вернуться на страницу собрания</a>
+    <a href="/construct/meeting?id={{ meeting.meeting_id }}" class="btn"> Вернуться на страницу собрания</a>
 
     {% endblock %}
