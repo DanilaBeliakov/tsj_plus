@@ -11,13 +11,13 @@
           {% csrf_token %}
           <p>
             <label>ФИО</label><br>
-            <input type="text" name = "user_name" value = ФИО required /><br>
+            <input type="text" name = "user_name" required /><br>
             <label>Номер квартиры</label><br>
-            <input type="text" name = "user_flat_number" value = 0 required /><br>
+            <input type="text" name = "user_flat_number" required /><br>
             <label>Площадь квартиры</label><br>
-            <input type="text" name = "user_flat_area" value = 0 required/><br>
+            <input type="text" name = "user_flat_area" required/><br>
             <label>Доля собственности</label><br>
-            <input type="text" name = "user_flat_share" value = 0 required/><br>
+            <input type="text" name = "user_flat_share" placeholder="Число от 0 до 1" required/><br>
             {% for vote in my_votes %}
             <strong>{{vote.solution}}</strong><br>
             Решение:<br />

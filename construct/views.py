@@ -96,6 +96,8 @@ def add_meeting(request, voting_mas = []):
                 new_elections = temp_elections.objects.filter(house_id = request.session['house_id'])
         else:
             add_elections = temp_elections.objects.filter(house_id = request.session['house_id'])
+            if len(add_elections) == 0:
+                return HttpResponse(f"<h2>Для проведения собрания необходимо добавить хотя-бы один вопрос!</h2>")
             new_meeting = meetings()
             now_user = users.objects.get(email=request.session['email'])
             now_house = houses.objects.get(id = request.session['house_id'])
