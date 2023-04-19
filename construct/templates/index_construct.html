@@ -2,7 +2,11 @@
 
 {% block content %}
   {% for elem in all %}
-  <div class="news">
+  {% if elem.stage == 6 %}
+  <div class="finished">
+    {% else %}
+    <div class="news">
+    {% endif %}
   <a href="meeting?id={{ elem.meeting_id }}" class="meeting_names">
     <h3>{{elem.title}}<br></h3>
   </a>

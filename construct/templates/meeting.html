@@ -15,7 +15,7 @@
 
 {% if meeting.stage == 2 %}
 <h3>Текущая стадия: создано уведомление</h3>
-<a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn5"> Скачать уведомление </a><br>
 <br> <br>
 {% if now_user.is_admin or is_initiator %}
 <a href="{% url 'add_statement' %}" class="btn5"> Создать бюллетень </a><br>
@@ -24,8 +24,10 @@
 
 {% if meeting.stage == 3 %}
 <h3>Текущая стадия: созданы бюллетени</h3>
-<a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn5"> Скачать уведомление </a>
+<br>
+<br>
+<a href="{% url 'get_statement_file' %}" class="btn5"> Скачать бюллетень </a><br>
 <br><br>
 {% if now_user.is_admin or is_initiator %}
 <form method="post">
@@ -42,14 +44,20 @@
 {% if meeting.stage == 4 %}
 <h3>Текущая стадия: голосование начато</h3>
 
-<a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn5"> Скачать уведомление </a>
+<br>
+<br>
+<a href="{% url 'get_statement_file' %}" class="btn5"> Скачать бюллетень </a>
+<br>
 <br>
 
-<a>Если вы еще не проголосовали, то можете это сделать по ссылке</a> <br>
+<a>Если вы еще не проголосовали, то можете это сделать по ссылке</a>
+<br>
+<br>
 
-<a href="{% url 'index_voting' %}">Голосование</a>
-
+<a href="{% url 'index_voting' %}" class="btn5">Голосование</a>
+<br>
+<br>
 {% if now_user.is_admin or is_initiator %}
     <a>Вы можете добавить в систему голоса, внесенные оффлайн</a>
     <br>
@@ -74,7 +82,7 @@
     <form method="post">
         {% csrf_token %}
         <input type="hidden" name='status' value="STOP" />
-        <input type="submit" value = "Завершить голосование" >
+        <input type="submit" value = "Завершить голосование" class="btn5">
     </form>
     {% else %}
     <a>Только администратор или инициатор собрания могут завершить голосование<a/><br>
@@ -87,8 +95,11 @@
 {% if meeting.stage == 5 %}
 <h3>Текущая стадия: голосование завершено</h3>
 
-<a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn5"> Скачать уведомление </a>
+        <br>
+        <br>
+        <br>
+<a href="{% url 'get_statement_file' %}" class="btn5"> Скачать бюллетень </a><br>
 <br><br>
 
 
@@ -97,7 +108,7 @@
         <br>
         <br>
         <br>
-    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="meeting_names">Результаты голосования</a>
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="btn5">Результаты голосования</a>
         <br>
         <br>
         <br>
@@ -111,13 +122,22 @@
 
 <h3>СОБРАНИЕ ЗАВЕРШЕНО</h3>
 
-<a href="{% url 'get_notification_file' %}" class="meeting_names"> Скачать уведомление </a><br>
-<a href="{% url 'get_statement_file' %}" class="meeting_names"> Скачать бюллетень </a><br>
-<a href="{% url 'get_protocol_file' %}" class="meeting_names"> Скачать протокол </a><br>
+<a href="{% url 'get_notification_file' %}" class="btn5"> Скачать уведомление </a>
+        <br>
+        <br>
+<a href="{% url 'get_statement_file' %}" class="btn5"> Скачать бюллетень </a>
+        <br>
+        <br>
+<a href="{% url 'get_protocol_file' %}" class="btn5"> Скачать протокол </a>
+        <br>
+        <br>
 {% if now_user.is_admin %}
 <strong style="color: black;" >Посмотреть результаты голосования</strong>
         <br>
-    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="meeting_names">Результаты голосования</a><br>
+        <br>
+    <a href="/voting/voting_results?id={{ meeting.meeting_id }}" class="btn5">Результаты голосования</a>
+        <br>
+        <br>
 {% endif %}
 <br><br>
 

@@ -2,14 +2,13 @@
 
 {% block content %}
 <script>
-    function setMinDate() {
-        var dateOfStartField = document.getElementById("id_date_of_start");
+    document.getElementById("id_date_of_start").addEventListener("change", function() {
+        var input = this.value;
         var dateOfEndField = document.getElementById("id_date_of_end");
-        var dateOfCountingField = document.getElementById("id_date_of_counting");
-        var minDateValue = new Date(dateOfStartField.value);
-        var maxDateValue = new Date(dateOfStartField.value);
+        var minDateValue = new Date(input);
+        var maxDateValue = new Date(input);
 
-        minDateValue.setDate(minDateValue.getDate() + 10);
+        minDateValue.setDate(minDateValue.getDate() + 7);
         maxDateValue.setDate(maxDateValue.getDate() + 60);
       // Format the date value as a string in ISO format (YYYY-MM-DD)
         var minFormattedDate = minDateValue.toISOString().substring(0, 10);
@@ -17,7 +16,9 @@
 
         dateOfEndField.min = minFormattedDate;
         dateOfEndField.max = maxFormattedDate;
-    }
+        dateOfEndField.value = minFormattedDate;
+        alert(minFormattedDate);
+    });
 
     function setCountingDate() {
           var dateField = document.getElementById("id_date_of_end");

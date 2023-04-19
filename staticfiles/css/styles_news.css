@@ -174,21 +174,21 @@
       position: relative;
     }
 .image1{
-position: relative;
-left:0%;
-top: 17px;
-}
-.image2{
-  position: relative;
-  left: 48%;
-  top: 18px;
-  }
-  .logo{
+      position: relative;
+      left: 20%;
+      top: 17px;
+      }
+  .image2{
     position: relative;
-    left: 42%;
-    margin-top: 0px;
-    margin-right: 0; 
-  }
+    left: 64%;
+    top: 18px;
+    }
+    .logo{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: -120px;
+    }
   
   a:hover {
     color: #fff;

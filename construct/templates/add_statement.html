@@ -6,16 +6,16 @@
     {% csrf_token %}
 
     <label>Введите время начала сдачи бланков</label><br>
-    <input type="time" class="time" name = "start_time" /><br>
+    <input type="time" class="time" name = "start_time" value="12:00"/><br>
 
     <label>Введите время окончания сдачи бланков</label><br>
-    <input type="time" class= "time" name = "end_time" /><br>
+    <input type="time" class= "time" name = "end_time" value="18:00"/><br>
 
     <label>Введите дату сдачи бланков</label><br>
-    <input type="date" class= "date" name = "send_date" min = "{{min_blanks}}" /><br>
+    <input type="date" class= "date" name = "send_date" min = "{{min_blanks}}" value = "2023-05-14"/><br>
 
     <label>Введите дату публикации бюллетеней </label><br>
-    <input type="date" class= "date" name = "publication_date" min = "{{min_pub}}" /><br>
+    <input type="date" class= "date" name = "publication_date" min = "{{min_pub}}" value="2023-05-15"/><br>
 
     {% for elect in now_elections %}
     <p>Причина голосования: {{elect.question}} <br />

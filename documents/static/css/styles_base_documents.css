@@ -152,20 +152,20 @@
       
     .image1{
       position: relative;
-      left:0%;
+      left: 20%;
       top: 17px;
       }
-      .image2{
-        position: relative;
-        left: 48%;
-        top: 18px;
-        }
-        .logo{
-          position: relative;
-          left: 42%;
-          margin-top: 0px;
-          margin-right: 0; 
-        }
+  .image2{
+    position: relative;
+    left: 64%;
+    top: 18px;
+    }
+    .logo{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: -120px;
+    }
 /* form {
   margin-left:1500px;
     margin-top: 50px;

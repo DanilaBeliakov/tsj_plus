@@ -52,7 +52,7 @@ class NotificationForm(forms.Form):
                                       )
 
     date_of_start = forms.DateTimeField(label='Дата начала собрания/онлайн голосования:', widget=forms.DateInput(
-        attrs={'title': NOTIFICATION_TIME, 'type': 'date', 'value': get_minimum_date(14), 'min': get_minimum_date(14), 'onchange': "setMinDate()"}))
+        attrs={'title': NOTIFICATION_TIME, 'type': 'date', 'value': '2023-05-05', 'min': get_minimum_date(14), 'onchange': "setMinDate();"}))
     time_of_start = forms.DateTimeField(required=False, label='Время начала собрания:',
                                         widget=forms.TimeInput(format='%H:%M',
                                                                attrs={'type': 'time', 'value': '12:00'}))
@@ -60,15 +60,16 @@ class NotificationForm(forms.Form):
                                       widget=forms.DateInput(attrs={'type': 'date',
                                                                     'min': get_minimum_date(21),
                                                                     'title': VOTING_TIME,
-                                                                    'onchange': 'setCountingDate()',
+                                                                    'onchange': 'setCountingDate();',
+                                                                    'value': "2023-05-14",
                                                                     }))
     time_of_end = forms.DateTimeField(required=False, label='Время окончания заочного голосования:',
-                                      widget=forms.TimeInput(format='%H:%M', attrs={'type': 'time', 'value': '12:00'}))
+                                      widget=forms.TimeInput(format='%H:%M', attrs={'type': 'time', 'value': '18:00'}))
 
     date_of_counting = forms.DateTimeField(label='Дата подведения итогов:',
-                                           widget=forms.DateInput(attrs={'type': 'date'}))
+                                           widget=forms.DateInput(attrs={'type': 'date', 'value': '2023-05-15'}))
     time_of_counting = forms.DateTimeField(label='Время подсчета голосов:',
-                                           widget=forms.TimeInput(format='%H:%M', attrs={'type': 'time'}))
+                                           widget=forms.TimeInput(format='%H:%M', attrs={'type': 'time', 'value': '20:00'}))
     place_of_counting = forms.CharField(label='Место подсчета голосов:', widget=forms.TextInput())
     questions = forms.CharField(label='Вопросы, выносимые на собрание ТСЖ:', widget=forms.TextInput())
 

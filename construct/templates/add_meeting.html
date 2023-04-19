@@ -37,7 +37,7 @@
 
     </div>
     
-      <input type="submit" class="adding" value="Добавить вопрос в повестку" >
+      <input type="submit" class="btn6" value="Добавить вопрос в повестку" >
 
 </form>
 
@@ -119,17 +119,17 @@
     </p>
     <input type="hidden" name='status' value="NO" />
     <br>
-    <input type="submit" class="adding2" value="Добавить вопрос в повестку" >
+    <input type="submit" class="btn6" value="Добавить вопрос в повестку" >
     
 </form>
 
-<form method="post" class="small">
+<form method="post">
     {% csrf_token %}
     <p>Введите название собрания(для отображения на сайте) <br />
-        <input type="text" name = 'title' >
+        <input type="text" name = 'title' required value="{{default_name}}">
     <br>
     </p>
-    <input type="submit" value = "Создать собрание" class="adding3" >
+    <input type="submit" value = "Создать собрание" class="btn6" >
     
 </form>
 

@@ -7,6 +7,8 @@
   <!-- Добавление дополнительного статического CSS файла -->
   {% load static %}
   <link rel="stylesheet" href="\static\css\styles_base_construct.css">
+    <title>ТСЖ Плюс - Собрания</title>
+</head>
 <body>
   <img src="https://i.ibb.co/ZLSbDZS/3.png" alt="logo" class="logo" height="100" width="200">
   <img src="https://i.ibb.co/jkwgNVW/image.png" alt="image1" class="image1" height="130" width="190">
@@ -15,9 +17,9 @@
     {% block topbar %}
        <a href="{% url 'index_news' %}"> Новости </a>
        <a href="{% url 'index_voting' %}">Голосование</a>
-       <a href="{% url 'index_construct' %}">Как провести собрание</a>
+       <a href="{% url 'index_construct' %}">Собрания</a>
        <a href="{% url 'index_documents' %}">Документы</a>
-       <a href="{% url 'account' %}">личный кабинет</a>
+       <a href="{% url 'account' %}">Личный кабинет</a>
 
      {% endblock %}
    </div>

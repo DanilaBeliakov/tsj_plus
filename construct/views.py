@@ -24,6 +24,10 @@ base_path = os.path.join(settings.BASE_DIR, 'path', 'to', 'file')
 from .forms import get_minimum_date, get_maximum_date
 
 
+def get_tsj_info(request):
+    return render(request, 'tsj_info.html')
+
+
 def index_construct(request):
     all = meetings.all_elements(house=request.session['house_id'])
     now_user = users.objects.get(email=request.session['email'])
@@ -72,6 +76,7 @@ def meeting_view(request):
 
 
 def add_meeting(request, voting_mas = []):
+    default_name = "Собрание от " + str(datetime.datetime.now().date())
     if request.method == "POST":
         if request.POST.get('status') == "NO":
             new = request.POST.get('new_election')
@@ -125,7 +130,8 @@ def add_meeting(request, voting_mas = []):
         for elem in to_del:
             elem.delete()
         new_elections = temp_elections.objects.filter(house_id = request.session['house_id'])
-    return render(request, 'add_meeting.html', context={'new_elections' : new_elections})
+
+    return render(request, 'add_meeting.html', context={'new_elections':new_elections, 'default_name': default_name})
 
 
 def notification_view(request):
@@ -368,20 +374,28 @@ def download_file(request, file_path):
         response = FileResponse(file)
         response['Content-Disposition'] = f'attachment; filename="{file_name}"'
         return response
-    
+
+
 def get_notification_file(request):
-    meeting = meetings.objects.get(meeting_id = request.session['meeting_id'])
+    meeting = meetings.objects.get(meeting_id=request.session['meeting_id'])
     cur_notification = meeting.notification
-    return FileResponse(cur_notification.notification_file)
+    date = os.path.basename(meeting.notification.notification_file.name)[0:10]
+    full_name = "уведомление от " + date + ".docx"
+    return FileResponse(cur_notification.notification_file, as_attachment=True, filename = full_name)
+
 
 def get_statement_file(request):
-    meeting = meetings.objects.get(meeting_id = request.session['meeting_id'])
+    meeting = meetings.objects.get(meeting_id=request.session['meeting_id'])
     cur_statement = meeting.statement
-    return FileResponse(cur_statement.statement_file)
+    date = os.path.basename(meeting.statement.statement_file.name)[0:10]
+    full_name = "бюллетень от " + date + ".docx"
+    return FileResponse(cur_statement.statement_file, as_attachment=True, filename = full_name)
+
 
 def get_protocol_file(request):
-    meeting = meetings.objects.get(meeting_id = request.session['meeting_id'])
+    meeting = meetings.objects.get(meeting_id=request.session['meeting_id'])
     cur_protocol = meeting.protocol
-    return FileResponse(cur_protocol.protocol_file)
-
+    date = os.path.basename(meeting.protocol.protocol_file.name)[0:10]
+    full_name = "протокол от " + date + ".docx"
+    return FileResponse(cur_protocol.protocol_file, as_attachment=True, filename = full_name)
 

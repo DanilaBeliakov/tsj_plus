@@ -7,6 +7,7 @@
   <!-- Добавление дополнительного статического CSS файла -->
   {% load static %}
   <link rel="stylesheet" href="\static\css\styles_pers.css">
+    <title>ТСЖ Плюс - Личный кабинет</title>
 </head>
 
 <body>
@@ -17,9 +18,9 @@
     {% block topbar %}
        <a href="{% url 'index_news' %}"> Новости </a>
        <a href="{% url 'index_voting' %}">Голосование</a>
-       <a href="{% url 'index_construct' %}">Как провести собрание</a>
+       <a href="{% url 'index_construct' %}">Собрания</a>
        <a href="{% url 'index_documents' %}">Документы</a>
-       <a href="{% url 'account' %}">личный кабинет</a>
+       <a href="{% url 'account' %}">Личный кабинет</a>
 
      {% endblock %}
    </ul>

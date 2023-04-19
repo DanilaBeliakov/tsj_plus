@@ -90,19 +90,19 @@
 
     .image1{
       position: relative;
-      left:0%;
+      left: 20%;
       top: 17px;
       }
   .image2{
     position: relative;
-    left: 48%;
+    left: 64%;
     top: 18px;
     }
     .logo{
-      position: relative;
-      left: 42%;
-      margin-top: 0px;
-      margin-right: 0; 
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: -120px;
     }
     .main-news {
       position: relative;
@@ -130,10 +130,8 @@
     }
     
     .news {
-      padding: 0%;
+      padding: 1%;
       border-bottom: 1px solid white;
-      margin-top: 8%;
-      margin-bottom: 8%;
       font-size: 1em;
       color: #9d999d;
     }
@@ -420,8 +418,8 @@ input[type="time"] {
   text-align: center;
 }
 .notif{
-  position: relative;
-  margin-top: -7%;
+  margin-top: 3%;
+  margin-bottom: 3%;
 }
 
 input[type="radio"] {
@@ -493,7 +491,9 @@ input[type="radio"] label {
   border-radius: 5px;
   height: 10%;
   width: 20%;
-  margin-left: 38%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border: 0.08em solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -512,3 +512,27 @@ input[type="submit"]{
   border: 2% solid rgba(225, 226, 230, 0.2);
   box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.3);
 }
+
+
+
+.info {
+    color: black;
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 25px;
+}
+.info li {
+    font-size: 30px;
+}
+.info p {
+    font-size: 30px;
+}
+
+.finished {
+      padding: 1%;
+      border-bottom: 1px solid white;
+      font-size: 1em;
+      background-color: #A9A9A9;
+      margin-top: 0px;
+    }

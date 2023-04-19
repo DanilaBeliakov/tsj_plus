@@ -12,4 +12,5 @@ urlpatterns = [
     re_path('get_notification_file/', views.get_notification_file, name='get_notification_file'),
     re_path('get_statement_file/', views.get_statement_file, name='get_statement_file'),
     re_path('get_protocol_file/', views.get_protocol_file, name='get_protocol_file'),
+    re_path('tsj_info/', views.get_tsj_info, name='get_tsj_info'),
 ]
