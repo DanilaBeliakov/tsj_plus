@@ -2,13 +2,24 @@
 
 {% block content %}
 
-  <strong><h3>Протоколы</h3></strong>
+  <strong class="text"><h3>Протоколы</h3></strong>
 
   {% for meeting in my_meetings %}
-
+<div class="news">
 <p>
-  <strong>{{meeting.title}}<br></strong>
-  <a href="{% url 'get_protocol_file' %}"> Скачать протокол </a><br>
+  <strong class="text">{{meeting.title}}</strong>
+  <br>
+  <br>
+  <br>
+  {% if meeting.stage > 5 %}
+  <a href="{% url 'get_protocol_file' %}" class="btn5"> Скачать протокол </a>
+  <br>
+  <br>
+  <br>
+  {% else %}
+  <strong class="text">Протокол еще не создан</strong><br>
+  {% endif %}
 </p>
+  </div>
 {% endfor %}
 {% endblock %}

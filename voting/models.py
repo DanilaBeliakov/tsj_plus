@@ -62,9 +62,11 @@ class votes(models.Model):
 
     result = models.IntegerField()
 
+    def __str__(self):
+        return self.user.full_name + " " + str(self.election.election_id)
     
     def choose_elements(election):
-        elements = votes.objects.filter(election = elections.objects.get(election_id = election))
+        elements = votes.objects.filter(election=elections.objects.get(election_id = election))
         res = []
         for elem in elements:
             res.append(elem)
@@ -76,7 +78,8 @@ class votes(models.Model):
             if elem.election.election_id == election_id:
                 return True
         return False
-    
+
+
 
 class offline_votes(models.Model):
     vote_id = models.BigAutoField(primary_key = True)

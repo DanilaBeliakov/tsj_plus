@@ -2,14 +2,24 @@
 
 {% block content %}
 
-  <strong><h3>Уведомления</h3></strong>
+  <strong class="text"><h3>Уведомления</h3></strong>
 
   {% for meeting in my_meetings %}
-
+<div class="news">
 <p>
-  <strong>{{meeting.title}}<br></strong>
-  <a href="{% url 'get_notification_file' %}"> Скачать уведомление </a><br>
+  <strong class="text">{{meeting.title}}</strong>
+  <br>
+  <br>
+  <br>
+  {% if meeting.stage > 1 %}
+  <a href="{% url 'get_notification_file' %}" class="btn5"> Скачать уведомление </a>
+  <br>
+  <br>
+  <br>
+  {% else %}
+  <strong class="text">Уведомление еще не создано</strong><br>
+  {% endif %}
 </p>
-
+</div>
   {% endfor %}
 {% endblock %}

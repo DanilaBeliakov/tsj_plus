@@ -141,13 +141,13 @@ def notification_view(request):
         name_of_place = request.POST.get('name_of_place')  # место встречи для очного собрания
         type_of_meeting = request.POST.get('type_of_meeting')  # тип собрания
         planned = request.POST.get('type_of_plans')  # тип собрания
-        date_of_start = request.POST.get('date_of_start')
+        date_of_start = datetime.datetime.strptime(request.POST.get('date_of_start'), '%Y-%m-%d').strftime("%d-%m-%Y")
         time_of_start = request.POST.get('time_of_start')
-        date_of_end = request.POST.get('date_of_end')
+        date_of_end = datetime.datetime.strptime(request.POST.get('date_of_end'), '%Y-%m-%d').strftime("%d-%m-%Y")
         time_of_end = request.POST.get('time_of_end')
         invited_people = request.POST.get('invited_people')
         place_of_results = request.POST.get('place_of_results')
-        date_of_counting = request.POST.get('date_of_counting')
+        date_of_counting = datetime.datetime.strptime(request.POST.get('date_of_counting'), '%Y-%m-%d').strftime("%d-%m-%Y")
         time_of_counting = request.POST.get('time_of_counting')
         place_of_counting = request.POST.get('place_of_counting')
         type_of_initiator = request.POST.get('type_of_initiator')
@@ -214,6 +214,7 @@ def notification_view(request):
                    'type_of_plans': planned,
                    'voting_text' : voting_text,
                    }
+
         doc.render(context)
         now = datetime.datetime.now()
         filename = f"{now.strftime('%Y-%m-%d_%H-%M-%S')}_{uuid.uuid4().hex}.docx"
@@ -227,8 +228,6 @@ def notification_view(request):
         instance.notification_file.save(filename, docx_file, save=True)
         meeting.notification = instance
         meeting.save()
-
-
         link = "/construct/meeting/?id=" + str(meeting.meeting_id)
         return redirect(link)
     else:

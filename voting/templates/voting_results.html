@@ -35,9 +35,10 @@
         {% endif %}
 
         <td>{{now.solution}}</td>
-        <td>{{now.voited_for_part}}%</td>
-        <td>{{now.voited_against_part}}%</td>
-        <td>{{now.voited_idk_part}}%</td>
+
+        <td>{{now.voited_for_part|floatformat:2}}%</td>
+        <td>{{now.voited_against_part|floatformat:2}}%</td>
+        <td>{{now.voited_idk_part|floatformat:2}}%</td>
         {% if now.is_quorum == 1 %}
         <td>Достигнут</td>
         {% else %}

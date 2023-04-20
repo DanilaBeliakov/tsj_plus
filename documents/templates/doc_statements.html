@@ -2,13 +2,24 @@
 
 {% block content %}
 
-  <strong><h3>Бюллетени</h3></strong>
+  <strong class="text"><h3>Бюллетени</h3></strong>
 
   {% for meeting in my_meetings %}
-
+<div class="news">
 <p>
-  <strong>{{meeting.title}}<br></strong>
-  Бюллетень: <a href="{% url 'get_statement_file' %}"> Скачать бюллетень </a><br>
+  <strong class="text">{{meeting.title}}</strong>
+  <br>
+  <br>
+  <br>
+  {% if meeting.stage > 2 %}
+  <a href="{% url 'get_statement_file' %}" class="btn5"> Скачать бюллетень </a>
+  <br>
+  <br>
+  <br>
+  {% else %}
+  <strong class="text">Бюллетени еще не созданы</strong><br>
+  {% endif %}
 </p>
+  </div>
 {% endfor %}
 {% endblock %}
